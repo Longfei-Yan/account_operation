@@ -14,6 +14,4 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
 
-    $router->resource('licenseCategory', \License\LicenseCategoryController::class);
-    $router->resource('license', \License\LicenseController::class);
 });
