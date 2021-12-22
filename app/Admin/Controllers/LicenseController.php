@@ -23,8 +23,8 @@ class LicenseController extends AdminController
             $grid->column('address');
             $grid->column('count');
             $grid->column('category_id');
-            $grid->column('photo');
-            $grid->column('logo');
+            $grid->column('photo')->image();
+            $grid->column('logo')->image();
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
 

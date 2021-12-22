@@ -25,7 +25,7 @@ class GoodsController extends AdminController
             $grid->column('description');
             $grid->column('content');
             $grid->column('price');
-            $grid->column('thumbnail');
+            $grid->column('thumbnail')->image();
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
 
