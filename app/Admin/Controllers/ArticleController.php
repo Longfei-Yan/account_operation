@@ -2,13 +2,13 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Repositories\License;
+use App\Admin\Repositories\Article;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 
-class LicenseController extends AdminController
+class ArticleController extends AdminController
 {
     /**
      * Make a grid builder.
@@ -17,14 +17,10 @@ class LicenseController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new License(), function (Grid $grid) {
+        return Grid::make(new Article(), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('title');
-            $grid->column('address');
-            $grid->column('count');
-            $grid->column('category_id');
-            $grid->column('photo');
-            $grid->column('logo');
+            $grid->column('content');
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
 
@@ -44,14 +40,10 @@ class LicenseController extends AdminController
      */
     protected function detail($id)
     {
-        return Show::make($id, new License(), function (Show $show) {
+        return Show::make($id, new Article(), function (Show $show) {
             $show->field('id');
             $show->field('title');
-            $show->field('address');
-            $show->field('count');
-            $show->field('category_id');
-            $show->field('photo');
-            $show->field('logo');
+            $show->field('content');
             $show->field('created_at');
             $show->field('updated_at');
         });
@@ -64,19 +56,15 @@ class LicenseController extends AdminController
      */
     protected function form()
     {
-        return Form::make(new License(), function (Form $form) {
+        return Form::make(new Article(), function (Form $form) {
             $form->display('id');
             $form->text('title');
-            $form->text('address');
-            //$form->text('count');
+            $form->textarea('content');
             $form->select('category_id')->options(function (){
-                return \App\Models\LicenseCategory::selectOptions();
+                return \App\Models\ArticleCategory::selectOptions();
             })->saving(function ($v) {
                 return (int) $v;
             });
-            $form->image('photo')->move('images/license')->autoUpload();
-            $form->image('logo')->move('images/logo')->autoUpload();
-
             $form->display('created_at');
             $form->display('updated_at');
         });

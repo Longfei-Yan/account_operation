@@ -16,4 +16,8 @@ Route::group([
 
     $router->resource('licenseCategory', LicenseCategoryController::class);
     $router->resource('license', LicenseController::class);
+    $router->resource('articleCategory', ArticleCategoryController::class);
+    $router->resource('article', ArticleController::class);
+    $router->resource('goodsCategory', GoodsCategoryController::class);
+    $router->resource('goods', GoodsController::class);
 });
