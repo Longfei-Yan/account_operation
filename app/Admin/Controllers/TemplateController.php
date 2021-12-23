@@ -2,13 +2,13 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Repositories\License;
+use App\Admin\Repositories\Template;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 
-class LicenseController extends AdminController
+class TemplateController extends AdminController
 {
     /**
      * Make a grid builder.
@@ -17,19 +17,16 @@ class LicenseController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new License(), function (Grid $grid) {
+        return Grid::make(new Template(), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('title');
-            $grid->column('address');
-            $grid->column('count');
-            $grid->column('photo')->image();
-            $grid->column('logo')->image();
+            $grid->column('template');
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
-
+        
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-
+        
             });
         });
     }
@@ -43,13 +40,10 @@ class LicenseController extends AdminController
      */
     protected function detail($id)
     {
-        return Show::make($id, new License(), function (Show $show) {
+        return Show::make($id, new Template(), function (Show $show) {
             $show->field('id');
             $show->field('title');
-            $show->field('address');
-            $show->field('count');
-            $show->field('photo');
-            $show->field('logo');
+            $show->field('template');
             $show->field('created_at');
             $show->field('updated_at');
         });
@@ -62,12 +56,11 @@ class LicenseController extends AdminController
      */
     protected function form()
     {
-        return Form::make(new License(), function (Form $form) {
+        return Form::make(new Template(), function (Form $form) {
             $form->display('id');
             $form->text('title');
-            $form->text('address');
-            $form->image('photo')->move('images/license')->autoUpload();
-            $form->image('logo')->move('images/logo')->autoUpload();
+            $form->text('template');
+        
             $form->display('created_at');
             $form->display('updated_at');
         });

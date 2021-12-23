@@ -2,10 +2,10 @@
 
 namespace App\Admin\Repositories;
 
-use App\Models\LicenseCategory as Model;
+use App\Models\Site as Model;
 use Dcat\Admin\Repositories\EloquentRepository;
 
-class LicenseCategory extends EloquentRepository
+class Site extends EloquentRepository
 {
     /**
      * Model.

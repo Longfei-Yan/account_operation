@@ -20,4 +20,6 @@ Route::group([
     $router->resource('article', ArticleController::class);
     $router->resource('goodsCategory', GoodsCategoryController::class);
     $router->resource('goods', GoodsController::class);
+    $router->resource('template', TemplateController::class);
+    $router->resource('site', SiteController::class);
 });
