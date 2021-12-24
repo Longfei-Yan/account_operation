@@ -30,7 +30,7 @@ class SiteController extends AdminController
             $grid->column('goods_id');
             $grid->column('article_id');
             $grid->column('template_id');
-            $grid->column('remark');
+            $grid->column('note');
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
 
@@ -57,7 +57,7 @@ class SiteController extends AdminController
             $show->field('goods_id');
             $show->field('article_id');
             $show->field('template_id');
-            $show->field('remark');
+            $show->field('note');
             $show->field('created_at');
             $show->field('updated_at');
         });
@@ -97,7 +97,7 @@ class SiteController extends AdminController
                 ->from(TemplateTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
                 ->model(License::class, 'id', 'title'); // 设置编辑数据显示
 
-            $form->text('remark');
+            $form->text('note');
 
             $form->display('created_at');
             $form->display('updated_at');

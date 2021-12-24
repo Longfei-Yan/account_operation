@@ -19,14 +19,14 @@ class TemplateController extends AdminController
     {
         return Grid::make(new Template(), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('title');
             $grid->column('template');
+            $grid->column('note');
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
-        
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-        
+
             });
         });
     }
@@ -42,8 +42,8 @@ class TemplateController extends AdminController
     {
         return Show::make($id, new Template(), function (Show $show) {
             $show->field('id');
-            $show->field('title');
             $show->field('template');
+            $show->field('note');
             $show->field('created_at');
             $show->field('updated_at');
         });
@@ -58,9 +58,8 @@ class TemplateController extends AdminController
     {
         return Form::make(new Template(), function (Form $form) {
             $form->display('id');
-            $form->text('title');
             $form->text('template');
-        
+            $form->text('note');
             $form->display('created_at');
             $form->display('updated_at');
         });
