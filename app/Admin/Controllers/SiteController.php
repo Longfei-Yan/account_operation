@@ -95,7 +95,7 @@ class SiteController extends AdminController
                 ->title('弹窗标题')
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(TemplateTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
-                ->model(License::class, 'id', 'title'); // 设置编辑数据显示
+                ->model(License::class, 'id', 'template'); // 设置编辑数据显示
 
             $form->text('note');
 
