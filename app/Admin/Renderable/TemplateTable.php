@@ -14,7 +14,7 @@ class TemplateTable extends LazyRenderable
 
         return Grid::make(new Template(), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('title');
+            $grid->column('template');
             $grid->column('created_at');
             $grid->column('updated_at');
 
