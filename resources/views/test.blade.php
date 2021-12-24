@@ -67,7 +67,7 @@
     <ul class="policy">
         @if (!empty($article))
             @foreach ($article as $item)
-                <li>{{ $article['title'] }}</li>
+                <li>{{ $item['title'] }}</li>
             @endforeach
         @else
             Not Data
