@@ -19,9 +19,7 @@ class LicenseController extends AdminController
     {
         return Grid::make(new License(), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('title');
-            $grid->column('address');
-            $grid->column('count');
+            $grid->column('name');
             $grid->column('photo')->image();
             $grid->column('logo')->image();
             $grid->column('created_at');
@@ -45,6 +43,7 @@ class LicenseController extends AdminController
     {
         return Show::make($id, new License(), function (Show $show) {
             $show->field('id');
+            $show->field('name');
             $show->field('title');
             $show->field('address');
             $show->field('count');
@@ -64,6 +63,7 @@ class LicenseController extends AdminController
     {
         return Form::make(new License(), function (Form $form) {
             $form->display('id');
+            $form->text('name');
             $form->text('title');
             $form->text('address');
             $form->image('photo')->move('images/license')->autoUpload();
