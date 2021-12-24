@@ -34,19 +34,15 @@ class TemplateController extends Controller
 
         //获取执照，商品，文章
         $license = License::find($site['license_id']);
-
-        $goodsId = explode(',', $site['goods_id']);
-        $goods = Goods::select()->whereIn('id', $goodsId)->get();
-
-        $articleId = explode(',', $site['article_id']);
-        $article = Article::select()->whereIn('id', $articleId)->get();
+        $goods = Goods::select()->whereIn('id', $site['goods_id'])->get();
+        $article = Article::select()->whereIn('id', $site['article_id'])->get();
 
         $data = [
             'license' => $license,
             'goods'   => $goods,
             'article'=>$article
         ];
-        return view($template['template'], $data);
 
+        return view($template['template'], $data);
     }
 }
