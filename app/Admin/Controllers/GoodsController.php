@@ -76,7 +76,7 @@ class GoodsController extends AdminController
             $form->textarea('description');
             $form->textarea('content');
             $form->text('price');
-            $form->image('thumbnail')->move('images/goods')->autoUpload();
+            $form->image('thumbnail')->move('images/goods')->uniqueName()->autoUpload();
 
             $form->display('created_at');
             $form->display('updated_at');
