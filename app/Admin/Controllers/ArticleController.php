@@ -58,13 +58,14 @@ class ArticleController extends AdminController
     {
         return Form::make(new Article(), function (Form $form) {
             $form->display('id');
-            $form->text('title');
-            $form->textarea('content');
             $form->select('category_id')->options(function (){
                 return \App\Models\ArticleCategory::selectOptions();
             })->saving(function ($v) {
                 return (int) $v;
             });
+            $form->text('title');
+            $form->textarea('content');
+
             $form->display('created_at');
             $form->display('updated_at');
         });

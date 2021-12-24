@@ -7,6 +7,7 @@ use App\Admin\Renderable\GoodsTable;
 use App\Admin\Renderable\LicenseTable;
 use App\Admin\Renderable\TemplateTable;
 use App\Admin\Repositories\Site;
+use App\Models\Goods;
 use App\Models\License;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -72,18 +73,19 @@ class SiteController extends AdminController
         return Form::make(new Site(), function (Form $form) {
             $form->display('id');
             $form->text('domain');
-            $form->selectTable('license_id')->title('弹窗标题')
+            $form->selectTable('license_id')
+                ->title('弹窗标题')
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(LicenseTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
                 ->model(License::class, 'id', 'title'); // 设置编辑数据显示
 
-            $form->selectTable('goods_id')
+            $form->multipleSelectTable('goods_id')
                 ->title('弹窗标题')
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(GoodsTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
                 ->model(License::class, 'id', 'title'); // 设置编辑数据显示
 
-            $form->selectTable('article_id')
+            $form->multipleSelectTable('article_id')
                 ->title('弹窗标题')
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(ArticleTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
