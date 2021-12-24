@@ -24,6 +24,17 @@
         .footer{
             text-align: center;
         }
+        .policy{
+            list-style: none;
+            display: table;
+            width: 100%;
+            border: 0;
+            margin: 0;
+            padding: 0;
+        }
+        .policy li{
+            display: table-cell;
+        }
     </style>
 </head>
 <body>
@@ -38,11 +49,11 @@
 
             <tr>
                 @foreach ($goods as $item)
-                <td>
-                    <img src="{{ $item['thumbnail'] }}" alt="">
-                    <h3>{{ $item['title'] }}</h3>
-                    <p>{{ $item['description'] }}</p>
-                </td>
+                    <td>
+                        <img src="{{ $item['thumbnail'] }}" alt="">
+                        <h3>{{ $item['title'] }}</h3>
+                        <p>{{ $item['description'] }}</p>
+                    </td>
                 @endforeach
             </tr>
 
@@ -53,6 +64,15 @@
 </div>
 
 <div class="footer">
+    <ul class="policy">
+        @if (!empty($article))
+            @foreach ($article as $item)
+                <li>{{ $article['title'] }}</li>
+            @endforeach
+        @else
+            Not Data
+        @endif
+    </ul>
     <p>{{ $license['address'] }}</p>
 </div>
 </body>
