@@ -36,7 +36,7 @@ class TemplateController extends Controller
         //获取执照，商品，文章
         $license = License::find($site['license_id']);
         $goods = Goods::select()->whereIn('id', $site['goods_id'])->get();
-        //$article = Article::select()->whereIn('id', $site['article_id'])->get();
+        $article = Article::select()->whereIn('id', $site['article_id'])->get();
 
         $shipping = Article::select()->where('category_id', '=', 1)->whereIn('id', $site['article_id'])->first();
         $returns = Article::select()->where('category_id', '=', 2)->whereIn('id', $site['article_id'])->first();
@@ -49,6 +49,7 @@ class TemplateController extends Controller
         $data = [
             'license' => $license,
             'goods'   => $goods,
+            'article'   => $article,
             'shipping'=>$shipping,
             'returns'=>$returns,
             'platform'=>$platform,
