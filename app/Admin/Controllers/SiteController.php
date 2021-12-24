@@ -7,8 +7,10 @@ use App\Admin\Renderable\GoodsTable;
 use App\Admin\Renderable\LicenseTable;
 use App\Admin\Renderable\TemplateTable;
 use App\Admin\Repositories\Site;
+use App\Models\Article;
 use App\Models\Goods;
 use App\Models\License;
+use App\Models\Template;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
@@ -83,19 +85,19 @@ class SiteController extends AdminController
                 ->title('弹窗标题')
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(GoodsTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
-                ->model(License::class, 'id', 'title'); // 设置编辑数据显示
+                ->model(Goods::class, 'id', 'title'); // 设置编辑数据显示
 
             $form->multipleSelectTable('article_id')
                 ->title('弹窗标题')
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(ArticleTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
-                ->model(License::class, 'id', 'title'); // 设置编辑数据显示
+                ->model(Article::class, 'id', 'title'); // 设置编辑数据显示
 
             $form->selectTable('template_id')
                 ->title('弹窗标题')
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(TemplateTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
-                ->model(License::class, 'id', 'template'); // 设置编辑数据显示
+                ->model(Template::class, 'id', 'template'); // 设置编辑数据显示
 
             $form->text('note');
 
