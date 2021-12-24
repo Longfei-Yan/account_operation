@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\ArticleCategory;
 use Illuminate\Http\Request;
 use App\Models\License;
 use App\Models\Goods;
@@ -35,12 +36,26 @@ class TemplateController extends Controller
         //获取执照，商品，文章
         $license = License::find($site['license_id']);
         $goods = Goods::select()->whereIn('id', $site['goods_id'])->get();
-        $article = Article::select()->whereIn('id', $site['article_id'])->get();
+        //$article = Article::select()->whereIn('id', $site['article_id'])->get();
+
+        $shipping = Article::select()->where('category_id', '=', 1)->whereIn('id', $site['article_id'])->first();
+        $returns = Article::select()->where('category_id', '=', 2)->whereIn('id', $site['article_id'])->first();
+        $platform = Article::select()->where('category_id', '=', 3)->whereIn('id', $site['article_id'])->first();
+        $privacy = Article::select()->where('category_id', '=', 4)->whereIn('id', $site['article_id'])->first();
+        $terms = Article::select()->where('category_id', '=', 5)->whereIn('id', $site['article_id'])->first();
+        $about = Article::select()->where('category_id', '=', 6)->whereIn('id', $site['article_id'])->first();
+        $email = Article::select()->where('category_id', '=', 7)->whereIn('id', $site['article_id'])->first();
 
         $data = [
             'license' => $license,
             'goods'   => $goods,
-            'article'=>$article
+            'shipping'=>$shipping,
+            'returns'=>$returns,
+            'platform'=>$platform,
+            'privacy'=>$privacy,
+            'terms'=>$terms,
+            'about'=>$about,
+            'email'=>$email,
         ];
 
         return view($template['template'], $data);
