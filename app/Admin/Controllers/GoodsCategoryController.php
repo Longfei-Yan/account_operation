@@ -13,7 +13,7 @@ class GoodsCategoryController extends AdminController
 {
     public function index(Content $content)
     {
-        return $content->header('树状模型')
+        return $content->header(admin_trans_label('GoodsCategory'))
             ->body(function (Row $row) {
                 $tree = new Tree(new GoodsCategory());
                 $tree->branch(function ($branch) {

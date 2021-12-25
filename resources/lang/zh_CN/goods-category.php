@@ -1,8 +1,8 @@
-<?php 
+<?php
 return [
     'labels' => [
-        'GoodsCategory' => 'GoodsCategory',
-        'goods-category' => 'GoodsCategory',
+        'GoodsCategory' => '商品分类',
+        'goodsCategory' => '商品分类',
     ],
     'fields' => [
         'parent_id' => '父级',

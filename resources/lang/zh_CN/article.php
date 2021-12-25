@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
     'labels' => [
         'Article' => '文章',

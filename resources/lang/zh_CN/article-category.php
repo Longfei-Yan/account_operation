@@ -1,8 +1,8 @@
-<?php 
+<?php
 return [
     'labels' => [
         'ArticleCategory' => '文章分类',
-        'article-category' => '文章分类',
+        'articleCategory' => '文章分类',
     ],
     'fields' => [
         'parent_id' => '父级',

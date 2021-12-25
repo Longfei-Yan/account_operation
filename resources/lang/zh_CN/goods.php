@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
     'labels' => [
         'Goods' => '商品',
@@ -10,6 +10,7 @@ return [
         'description' => '描述',
         'content' => '内容',
         'price' => '价格',
+        'thumbnail' => '缩略图',
     ],
     'options' => [
     ],

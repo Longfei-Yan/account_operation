@@ -22,6 +22,9 @@ return [
         'path'                  => '路径',
         'input'                 => '输入',
         'type'                  => '类型',
+        'show'                  => '显示',
+        'category_id'           => '分类',
+        'note'                  => '备注',
     ],
     'labels' => [
         'list'     => '列表',

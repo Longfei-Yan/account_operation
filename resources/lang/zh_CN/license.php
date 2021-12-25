@@ -1,8 +1,8 @@
 <?php
 return [
     'labels' => [
-        'License' => 'License',
-        'license' => 'License',
+        'License' => '执照',
+        'license' => '执照',
     ],
     'fields' => [
         'title' => '标题',
@@ -11,6 +11,7 @@ return [
         'category_id' => '分类',
         'photo' => '快照',
         'logo' => 'LOGO',
+        'banner' => '横幅',
     ],
     'options' => [
     ],
