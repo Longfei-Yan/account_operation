@@ -139,7 +139,7 @@
             <p><small>Copyright © 2021 {{ $license['title'] }}</small>
                 @if (!empty($policy))
                     @foreach ($policy as $item)
-                <a href="javascript:;" onclick="{{ $item['id'].'()' }}" class="ml-3" id="about">{{ $item['title'] }}</a>
+                <a href="javascript:;" onclick="{{ 'box'.$item['id'].'()' }}" class="ml-3" id="about">{{ $item['title'] }}</a>
                     @endforeach
                 @else
                     Not Data
@@ -149,21 +149,6 @@
         </div>
 
     </footer>
-
-    @if (!empty($policy))
-        @foreach ($policy as $item)
-        <div id="{{ $item['id'] }}" style="display:none">
-            <h4>{{ $item['title'] }}</h4>
-            {{ $item['content'] }}
-        </div>
-        @endforeach
-    @else
-        <div id="box1" style="display:none">
-            <h4>Not Data</h4>
-            Not Data
-        </div>
-    @endif
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -175,56 +160,17 @@
     <script>
         @if (!empty($policy))
         @foreach ($policy as $item)
-        function {{ $item['id'] }}(){
+        function {{ 'box'.$item['id'] }}(){
             layer.open({
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
                 area: ['500px', '500px'], //宽高
-                title:"Shipping Policy",
+                title:"{{ $item['title'] }}",
                 content: "{{ $item['content'] }}"
             });
         }
         @endforeach
         @endif
-
-        function box2(){
-            layer.open({
-                type: 1,
-                skin: 'layui-layer-rim', //加上边框
-                area: ['500px', '500px'], //宽高
-                title:"Returns Policy",
-                content: $('#box2').html()
-            });
-        }
-
-        function box3(){
-            layer.open({
-                type: 1,
-                skin: 'layui-layer-rim', //加上边框
-                area: ['500px', '500px'], //宽高
-                title:"Platform Policy",
-                content: $('#box3').html()
-            });
-        }
-
-        function box4(){
-            layer.open({
-                type: 1,
-                skin: 'layui-layer-rim', //加上边框
-                area: ['500px', '500px'], //宽高
-                title:"Privacy Policy",
-                content: $('#box4').html()
-            });
-        }
-        function box5(){
-            layer.open({
-                type: 1,
-                skin: 'layui-layer-rim', //加上边框
-                area: ['500px', '500px'], //宽高
-                title:"Terms",
-                content: $('#box5').html()
-            });
-        }
     </script>
 </body>
 </html>
