@@ -27,7 +27,7 @@ class SiteController extends AdminController
     {
         return Grid::make(new Site(), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('domain');
+            $grid->column('domain')->copyable();
             $grid->column('license_id');
             $grid->column('goods_id');
             $grid->column('article_id');

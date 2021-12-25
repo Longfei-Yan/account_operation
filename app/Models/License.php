@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class License extends Model
 {
-	    }
+    public function site()
+    {
+        return $this->hasMany(Site::class);
+    }
+}

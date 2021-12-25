@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\License;
+use App\Models\Site;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
@@ -22,6 +23,10 @@ class LicenseController extends AdminController
             $grid->column('name');
             $grid->column('photo')->image();
             $grid->column('logo')->image();
+            $grid->site('count')->display(function ($site) {
+                $count = count($site);
+                return "{$count}";
+            });
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
 

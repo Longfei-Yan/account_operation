@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Site extends Model
 {
+    public function license()
+    {
+        return $this->belongsTo(License::class);
+    }
+
     public function getGoodsIdAttribute($value)
     {
         return explode(',', $value);
