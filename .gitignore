@@ -3,7 +3,7 @@
 /public/storage
 /public/uploads
 /storage/*.key
-/resources/views
+/resources/views/*.blade.php
 /vendor
 .env
 .env.backup

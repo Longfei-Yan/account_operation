@@ -116,7 +116,7 @@
     <section class="p-5">
         <div class="container px-5">
             <h2 class="text-center" id="contact">CONTACT US</h2>
-            <form class="w-75 m-auto" method="post" action="link.php">
+            <form class="w-75 m-auto" method="get">
                 <div class="form-group mt-5">
                     <input type="text" class="form-control col-form-label-lg" id="formGroupExampleInput" placeholder="your name" required>
                 </div>
