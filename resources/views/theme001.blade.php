@@ -32,7 +32,7 @@
     <nav class="bg-001">
         <ul class="nav justify-content-center">
             <li class="nav-item">
-                <a class="nav-link active" href="index.html">HOME</a>
+                <a class="nav-link active" href="">HOME</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#about">ABOUT</a>
@@ -73,7 +73,7 @@
         @if (!empty($about))
         <h2>{{ $about['title'] }}</h2>
         <div>
-            <p>{{ $about['content'] }}}</p>
+            <p>{{ $about['content'] }}</p>
         </div>
         @else
             Not Data
@@ -136,7 +136,15 @@
     <footer class="py-3 bg-light">
         <div class="container">
             <p class="border-bottom"><small>Email: {{ $email['content'] }} | Address：{{ $license['address'] }}</small></p>
-            <p><small>Copyright © 2021 {{ $license['title'] }}</small><a href="javascript:;" onclick="box1()" class="ml-3" id="about">Shipping Policy</a><a href="javascript:;" onclick="box2()" class="ml-3" id="about">Returns Policy</a><a href="javascript:;" onclick="box3()" class="ml-3">Platform Policy</a><a href="javascript:;" onclick="box4()" class="ml-3">Privacy Policy</a><a href="javascript:;" onclick="box5()" class="ml-3">Terms</a></p>
+            <p><small>Copyright © 2021 {{ $license['title'] }}</small>
+                @if (!empty($policy))
+                    @foreach ($policy as $item)
+                <a href="javascript:;" onclick="box1()" class="ml-3" id="about">{{ $item['title'] }}</a>
+                    @endforeach
+                @else
+                    Not Data
+                @endif
+            </p>
             <p></p>
         </div>
 
