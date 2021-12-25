@@ -68,6 +68,7 @@ class LicenseController extends AdminController
             $form->text('address');
             $form->image('photo')->move('images/license')->autoUpload();
             $form->image('logo')->move('images/logo')->uniqueName()->autoUpload();
+            $form->image('banner')->move('images/banner')->uniqueName()->autoUpload();
             $form->display('created_at');
             $form->display('updated_at');
         });

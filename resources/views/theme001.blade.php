@@ -54,7 +54,7 @@
         <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
     </ol>
 
-    <img src="images/banner02.jpg" class="d-block w-100" alt="...">
+    <img src="{{ URL::asset('uploads/'.$license['banner']) }}" class="d-block w-100" alt="...">
     <div class="carousel-caption d-none d-md-block">
 
         <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
@@ -93,7 +93,7 @@
                             @foreach ($goods as $item)
                         <div class="col mb-3">
                             <div class="card h-100 mt-2">
-                                <img src="{{ $item['thumbnail'] }}" class="card-img-top" alt="...">
+                                <img src="{{ URL::asset('uploads/'.$item['thumbnail']) }}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $item['title'] }}</h5>
                                     <p class="card-text">
