@@ -139,7 +139,7 @@
             <p><small>Copyright © 2021 {{ $license['title'] }}</small>
                 @if (!empty($policy))
                     @foreach ($policy as $item)
-                <a href="javascript:;" onclick="{{ $item['title'].'()' }}" class="ml-3" id="about">{{ $item['title'] }}</a>
+                <a href="javascript:;" onclick="{{ $item['id'].'()' }}" class="ml-3" id="about">{{ $item['title'] }}</a>
                     @endforeach
                 @else
                     Not Data
@@ -152,7 +152,7 @@
 
     @if (!empty($policy))
         @foreach ($policy as $item)
-        <div id="{{ $item['title'].'()' }}" style="display:none">
+        <div id="{{ $item['id'] }}" style="display:none">
             <h4>{{ $item['title'] }}</h4>
             {{ $item['content'] }}
         </div>
@@ -173,15 +173,19 @@
     <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/layer/3.5.1/layer.js"></script>
     <script>
-        function box1(){
+        @if (!empty($policy))
+        @foreach ($policy as $item)
+        function {{ $item['id'] }}(){
             layer.open({
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
                 area: ['500px', '500px'], //宽高
                 title:"Shipping Policy",
-                content: $('#box1').html()
+                content: "{{ $item['content'] }}"
             });
         }
+        @endforeach
+        @endif
 
         function box2(){
             layer.open({
