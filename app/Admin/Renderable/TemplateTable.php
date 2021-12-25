@@ -14,17 +14,17 @@ class TemplateTable extends LazyRenderable
 
         return Grid::make(new Template(), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('template');
+            $grid->column('note');
             $grid->column('created_at');
             $grid->column('updated_at');
 
-            $grid->quickSearch(['id', 'title']);
+            $grid->quickSearch(['id', 'note']);
 
             $grid->paginate(10);
             $grid->disableActions();
 
             $grid->filter(function (Grid\Filter $filter) {
-                $filter->like('title')->width(4);
+                $filter->like('note')->width(4);
             });
         });
     }

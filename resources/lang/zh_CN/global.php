@@ -25,6 +25,7 @@ return [
         'show'                  => '显示',
         'category_id'           => '分类',
         'note'                  => '备注',
+        'title'                 => '标题',
     ],
     'labels' => [
         'list'     => '列表',
@@ -33,6 +34,10 @@ return [
         'create'   => '创建',
         'root'     => '顶级',
         'scaffold' => '代码生成器',
+        'license'  => '执照',
+        'goods'    => '商品',
+        'article'  => '文章',
+        'template' => '模板',
     ],
     'options' => [
         //

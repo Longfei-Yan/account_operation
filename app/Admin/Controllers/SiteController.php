@@ -76,28 +76,28 @@ class SiteController extends AdminController
             $form->display('id');
             $form->text('domain');
             $form->selectTable('license_id')
-                ->title('弹窗标题')
+                ->title(admin_trans_label('license'))
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(LicenseTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
-                ->model(License::class, 'id', 'title'); // 设置编辑数据显示
+                ->model(License::class, 'id', 'name'); // 设置编辑数据显示
 
             $form->multipleSelectTable('goods_id')
-                ->title('弹窗标题')
+                ->title(admin_trans_label('goods'))
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(GoodsTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
                 ->model(Goods::class, 'id', 'title'); // 设置编辑数据显示
 
             $form->multipleSelectTable('article_id')
-                ->title('弹窗标题')
+                ->title(admin_trans_label('article'))
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(ArticleTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
                 ->model(Article::class, 'id', 'title'); // 设置编辑数据显示
 
             $form->selectTable('template_id')
-                ->title('弹窗标题')
+                ->title(admin_trans_label('template'))
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(TemplateTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
-                ->model(Template::class, 'id', 'template'); // 设置编辑数据显示
+                ->model(Template::class, 'id', 'note'); // 设置编辑数据显示
 
             $form->text('note');
 
