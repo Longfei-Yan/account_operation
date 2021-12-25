@@ -42,6 +42,7 @@ class ArticleController extends AdminController
     {
         return Show::make($id, new Article(), function (Show $show) {
             $show->field('id');
+            $show->field('category_id');
             $show->field('title');
             $show->field('content');
             $show->field('created_at');

@@ -20,7 +20,6 @@ class GoodsController extends AdminController
     {
         return Grid::make(new Goods(), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('parent_id');
             $grid->column('title');
             $grid->column('description');
             $grid->column('content');
@@ -47,7 +46,7 @@ class GoodsController extends AdminController
     {
         return Show::make($id, new Goods(), function (Show $show) {
             $show->field('id');
-            $show->field('parent_id');
+            $show->field('category_id');
             $show->field('title');
             $show->field('description');
             $show->field('content');
