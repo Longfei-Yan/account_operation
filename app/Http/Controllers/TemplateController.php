@@ -44,6 +44,11 @@ class TemplateController extends Controller
         $about = Article::select()->where('category_id', '=', 6)->whereIn('id', $site['article_id'])->first();
         $email = Article::select()->where('category_id', '=', 7)->whereIn('id', $site['article_id'])->first();
 
+        $goodsCate = [];
+        foreach ($goods as $itme){
+            $goodsCate[] = $itme->category;
+        }
+
         $data = [
             'license' => $license,
             'goods'   => $goods,

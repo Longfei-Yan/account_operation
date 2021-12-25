@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
     'labels' => [
         'Site' => '网站',
@@ -11,6 +11,7 @@ return [
         'article_id' => '文章',
         'template_id' => '模板',
         'remark' => '备注',
+        'state' => '状态',
     ],
     'options' => [
     ],

@@ -38,6 +38,7 @@ return [
         'goods'    => '商品',
         'article'  => '文章',
         'template' => '模板',
+        'count'    => '网站个数',
     ],
     'options' => [
         //

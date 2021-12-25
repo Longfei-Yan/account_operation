@@ -11,4 +11,8 @@ class GoodsCategory extends Model
 
     protected $table = 'goods_categories';
 
+    public function article()
+    {
+        return $this->hasMany(Article::class);
+    }
 }

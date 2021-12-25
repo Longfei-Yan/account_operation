@@ -32,6 +32,13 @@ class GoodsController extends AdminController
                 $filter->equal('id');
 
             });
+
+            $grid->disableEditButton();
+            $grid->showQuickEditButton();
+
+            $grid->enableDialogCreate();
+            // 设置弹窗宽高，默认值为 '700px', '670px'
+            $grid->setDialogFormDimensions('60%', '100%');
         });
     }
 

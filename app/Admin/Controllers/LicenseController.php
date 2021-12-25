@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Renderable\SiteTable;
 use App\Admin\Repositories\License;
 use App\Models\Site;
 use Dcat\Admin\Form;
@@ -23,17 +24,29 @@ class LicenseController extends AdminController
             $grid->column('name');
             $grid->column('photo')->image();
             $grid->column('logo')->image();
-            $grid->site('count')->display(function ($site) {
+//            $grid->site(admin_trans_label('count'))->display(function ($site) {
+//                $count = count($site);
+//                return "{$count}";
+//            })->expand(SiteTable::make());
+            $grid->site(admin_trans_label('count'))->display(function ($site) {
                 $count = count($site);
                 return "{$count}";
-            });
+            })->modal('Site', SiteTable::make());
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
+                $filter->equal('name');
 
             });
+
+            $grid->disableEditButton();
+            $grid->showQuickEditButton();
+
+            $grid->enableDialogCreate();
+            // 设置弹窗宽高，默认值为 '700px', '670px'
+            $grid->setDialogFormDimensions('60%', '100%');
         });
     }
 

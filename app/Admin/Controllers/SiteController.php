@@ -14,6 +14,7 @@ use App\Models\Template;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Http\Controllers\AdminController;
 
 class SiteController extends AdminController
@@ -28,18 +29,40 @@ class SiteController extends AdminController
         return Grid::make(new Site(), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('domain')->copyable();
-            $grid->column('license_id');
-            $grid->column('goods_id');
-            $grid->column('article_id');
-            $grid->column('template_id');
+            $grid->column('license_id')->display(function($licenseId) {
+                return License::find($licenseId)->name;
+            });
+            $grid->column('goods_id')->count();
+            $grid->column('article_id')->count();
+            $grid->column('template_id')->display(function($templateId) {
+                return Template::find($templateId)->template;
+            });
             $grid->column('note');
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
+            $grid->column('state')
+                ->using([1 => '未处理', 2 => '已处理', 3 => '成功', 4 => '失败'])
+                ->dot(
+                    [
+                        1 => 'primary',
+                        2 => Admin::color()->info(),
+                        3 => 'success',
+                        4 => 'danger',
+                    ],
+                    'primary' // 第二个参数为默认值
+                );
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-
+                $filter->equal('domain');
             });
+
+            $grid->disableEditButton();
+            $grid->showQuickEditButton();
+
+            $grid->enableDialogCreate();
+            // 设置弹窗宽高，默认值为 '700px', '670px'
+            $grid->setDialogFormDimensions('60%', '100%');
         });
     }
 
