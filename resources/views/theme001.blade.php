@@ -64,34 +64,54 @@
     </section>
     <!-- about -->
 
+
+
     <!-- products -->
     <section class="bg-light pt-5 pb-5" id="products">
         <div class="container">
             <h2 class="text-center">OUR PRODUCTS</h2>
+            @if (!empty($goodsCategory))
+            <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+                @foreach (array_unique($goodsCategory) as $item)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {{ $goodsCategory[0]['id'] == $item['id']?'active':'' }}" id="pills-{{ $item['id'] }}-tab" data-toggle="pill" href="#pills-{{ $item['id'] }}" role="tab" aria-controls="pills-{{ $item['id'] }}" aria-selected="{{ $goodsCategory[0]['id'] == $item['id']?'true':'' }}">{{ $item['title'] }}</a>
+                </li>
+                @endforeach
+            </ul>
+            @endif
+
+            @if (!empty($goodsCategory))
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-hat" role="tabpanel" aria-labelledby="pills-hat-tab">
+                @foreach (array_unique($goodsCategory) as $category)
+                <div class="tab-pane fade {{ $goodsCategory[0]['id'] == $category['id']?'show active':'' }}" id="pills-{{ $category['id'] }}" role="tabpanel" aria-labelledby="pills-{{ $category['id'] }}-tab">
 
                     <div class="row row-cols-1 row-cols-md-2" id="div1">
                         @if (!empty($goods))
                             @foreach ($goods as $item)
-                        <div class="col mb-3">
-                            <div class="card h-100 mt-2">
-                                <img src="{{ URL::asset('uploads/'.$item['thumbnail']) }}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $item['title'] }}</h5>
-                                    <p class="card-text">
-                                        {{ $item['description'] }}
-                                    </p>
+                                @if ($item['category']['title']==$category['title'])
+                                <div class="col mb-3">
+                                    <div class="card h-100 mt-2">
+                                        <img src="{{ URL::asset('uploads/'.$item['thumbnail']) }}" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $item['title'] }}</h5>
+                                            <h5 class="card-title">{{ $item['category']['title'] }}</h5>
+                                            <p class="card-text">
+                                                {{ $item['description'] }}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                                @endif
                             @endforeach
                         @else
                             Not Data
                         @endif
                     </div>
                 </div>
+                @endforeach
             </div>
+            @endif
+
         </div>
     </section>
     <!-- products -->
@@ -138,7 +158,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/layer/3.5.1/layer.js"></script>
     <script>
         @if (!empty($policy))

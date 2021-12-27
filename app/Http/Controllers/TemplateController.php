@@ -16,7 +16,8 @@ class TemplateController extends Controller
 
     public function __construct()
     {
-        $this->currentDomain = $_SERVER['HTTP_HOST'];
+        //$this->currentDomain = $_SERVER['HTTP_HOST'];
+        $this->currentDomain = 'yaoyingice.online';
     }
 
     public function index(){
@@ -52,6 +53,7 @@ class TemplateController extends Controller
         $data = [
             'license' => $license,
             'goods'   => $goods,
+            'goodsCategory'   => $goodsCate,
             'article'   => $article,
             'policy'=> $policy,
             'about'=> $about,
