@@ -50,6 +50,9 @@ class SiteController extends AdminController
                         4 => 'danger',
                     ],
                     'primary' // 第二个参数为默认值
+                )
+                ->filter(
+                    Grid\Column\Filter\In::make([1 => '未处理', 2 => '已处理', 3 => '成功', 4 => '失败'])
                 );
 
             $grid->filter(function (Grid\Filter $filter) {
@@ -79,10 +82,11 @@ class SiteController extends AdminController
             $show->field('id');
             $show->field('domain');
             $show->field('license_id');
-            $show->field('goods_id');
-            $show->field('article_id');
+            $show->field('goods_id')->count();
+            $show->field('article_id')->count();
             $show->field('template_id');
             $show->field('note');
+            $show->field('state');
             $show->field('created_at');
             $show->field('updated_at');
         });
@@ -97,32 +101,39 @@ class SiteController extends AdminController
     {
         return Form::make(new Site(), function (Form $form) {
             $form->display('id');
-            $form->text('domain');
+            $form->text('domain')->required();
             $form->selectTable('license_id')
+                ->required()
                 ->title(admin_trans_label('license'))
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(LicenseTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
                 ->model(License::class, 'id', 'name'); // 设置编辑数据显示
 
             $form->multipleSelectTable('goods_id')
+                ->required()
                 ->title(admin_trans_label('goods'))
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(GoodsTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
                 ->model(Goods::class, 'id', 'title'); // 设置编辑数据显示
 
             $form->multipleSelectTable('article_id')
+                ->required()
                 ->title(admin_trans_label('article'))
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(ArticleTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
                 ->model(Article::class, 'id', 'title'); // 设置编辑数据显示
 
             $form->selectTable('template_id')
+                ->required()
                 ->title(admin_trans_label('template'))
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(TemplateTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
                 ->model(Template::class, 'id', 'note'); // 设置编辑数据显示
 
             $form->text('note');
+
+            $directors = [1 => '未处理', 2 => '已处理', 3 => '成功', 4 => '失败'];
+            $form->select('state')->options($directors);
 
             $form->display('created_at');
             $form->display('updated_at');
