@@ -53,14 +53,10 @@
 
     <!-- about -->
     <section class="container text-center pt-5 pb-5" id="about">
-        @if (!empty($about))
-        <h2>{{ $about['title'] }}</h2>
+        <h2>ABOUT US</h2>
         <div>
-            <p>{{ $about['content'] }}</p>
+            <p>{{ $license['about'] }}</p>
         </div>
-        @else
-            Not Data
-        @endif
     </section>
     <!-- about -->
 

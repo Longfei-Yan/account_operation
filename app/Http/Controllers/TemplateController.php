@@ -41,7 +41,7 @@ class TemplateController extends Controller
 
         $policy = Article::select()->whereIn('category_id', [1,2,3,4,5])->whereIn('id', $site['article_id'])->get();
 
-        $about = Article::select()->where('category_id', '=', 6)->whereIn('id', $site['article_id'])->first();
+        //$about = Article::select()->where('category_id', '=', 6)->whereIn('id', $site['article_id'])->first();
         $email = Article::select()->where('category_id', '=', 7)->whereIn('id', $site['article_id'])->first();
 
         $goodsCate = [];
@@ -55,7 +55,6 @@ class TemplateController extends Controller
             'goodsCategory'   => $goodsCate,
             'article'   => $article,
             'policy'=> $policy,
-            'about'=> $about,
             'email'=> $email,
         ];
 
