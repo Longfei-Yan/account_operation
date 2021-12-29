@@ -116,6 +116,7 @@ class SiteController extends AdminController
             $form->hidden('goods_id');
             $form->hidden('article_id');
             $form->hidden('email_id');
+            $form->hidden('template_id');
             $form->saving(function (Form $form) {
                 //商品
                 $license = License::find($form->license_id);
@@ -140,6 +141,10 @@ class SiteController extends AdminController
                 //邮箱
                 $emailId = Mailbox::select('id')->inRandomOrder()->take(1)->get();
                 $form->email_id = $emailId[0]['id'];
+
+                //模板
+                $template = Template::select('id')->inRandomOrder()->take(1)->get();
+                $form->template_id = $template[0]['id'];
             });
 
 //            $form->multipleSelectTable('goods_id')
