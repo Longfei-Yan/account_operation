@@ -37,8 +37,10 @@ class TemplateController extends Controller
         //获取执照，商品，文章
         //1获取指定商品包括分类的完整collection
         $license = License::find($site['license_id']);
-        $goods = Goods::select()->whereIn('id', $site['goods_id'])->get();
-        $article = Article::select()->whereIn('id', $site['article_id'])->get();
+        $goodsId = explode(',', $site['goods_id']);
+        $articleId = explode(',', $site['article_id']);
+        $goods = Goods::select()->whereIn('id', $goodsId)->get();
+        $article = Article::select()->whereIn('id', $articleId)->get();
 
         //$policy = Article::select()->whereIn('category_id', [1,2,3,4,5])->whereIn('id', $site['article_id'])->get();
 
