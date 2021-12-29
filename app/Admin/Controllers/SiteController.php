@@ -119,10 +119,12 @@ class SiteController extends AdminController
             $form->saving(function (Form $form) {
                 //商品
                 $license = License::find($form->license_id);
-                $goods = Goods::whereIn('category_id', $license['category_id'])->get();
                 $goodsId = [];
-                foreach ($goods as $item){
-                    $goodsId[] = $item['id'];
+                foreach ($license['category_id'] as $item){
+                    $goods = Goods::select('id')->where('category_id', '=', $item)->inRandomOrder()->take(3)->get();
+                    foreach ($goods as $item){
+                        $goodsId[] = $item['id'];
+                    }
                 }
                 $form->goods_id = implode(',', $goodsId);
 
@@ -138,7 +140,6 @@ class SiteController extends AdminController
                 //邮箱
                 $emailId = Mailbox::select('id')->inRandomOrder()->take(1)->get();
                 $form->email_id = $emailId[0]['id'];
-                Log::info($emailId[0]['id']);
             });
 
 //            $form->multipleSelectTable('goods_id')
