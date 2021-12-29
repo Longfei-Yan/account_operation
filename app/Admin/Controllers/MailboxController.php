@@ -19,7 +19,7 @@ class MailboxController extends AdminController
     {
         return Grid::make(new Mailbox(), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('email');
+            $grid->column('email')->editable(true);
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
 
