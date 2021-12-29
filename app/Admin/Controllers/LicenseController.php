@@ -2,9 +2,10 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Renderable\GoodsCategoryTable;
 use App\Admin\Renderable\SiteTable;
 use App\Admin\Repositories\License;
-use App\Models\Site;
+use App\Models\GoodsCategory;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
@@ -24,10 +25,6 @@ class LicenseController extends AdminController
             $grid->column('name');
             $grid->column('photo')->image();
             $grid->column('logo')->image();
-//            $grid->site(admin_trans_label('count'))->display(function ($site) {
-//                $count = count($site);
-//                return "{$count}";
-//            })->expand(SiteTable::make());
             $grid->site(admin_trans_label('count'))->display(function ($site) {
                 $count = count($site);
                 return "{$count}";
@@ -81,9 +78,16 @@ class LicenseController extends AdminController
     {
         return Form::make(new License(), function (Form $form) {
             $form->display('id');
+            $form->multipleSelectTable('category_id')
+                ->title(admin_trans_label('category'))
+                ->dialogWidth('50%') // 弹窗宽度，默认 800px
+                ->from(GoodsCategoryTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
+                ->model(GoodsCategory::class, 'id', 'title'); // 设置编辑数据显示
+
             $form->text('name');
             $form->text('title');
             $form->text('address');
+            $form->textarea('about');
             $form->image('photo')->move('images/license')->autoUpload();
             $form->image('logo')->move('images/logo')->uniqueName()->autoUpload();
             $form->image('banner')->move('images/banner')->uniqueName()->autoUpload();
