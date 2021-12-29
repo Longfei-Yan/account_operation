@@ -61,4 +61,40 @@ class TemplateController extends Controller
 
         return view($template['template'], $data);
     }
+
+    public function get(){
+
+        //检测是否许可的域名
+        $site = Site::select()->where('domain', '=', $this->currentDomain)->first();
+        if (empty($site)){
+            return $data = ['404'];
+        }
+
+        //获取执照，商品，文章
+        //1获取指定商品包括分类的完整collection
+        $license = License::find($site['license_id']);
+        $goodsId = explode(',', $site['goods_id']);
+        $articleId = explode(',', $site['article_id']);
+        $goods = Goods::select()->whereIn('id', $goodsId)->get();
+        $article = Article::select()->whereIn('id', $articleId)->get();
+
+        //$policy = Article::select()->whereIn('category_id', [1,2,3,4,5])->whereIn('id', $site['article_id'])->get();
+
+        $mailbox = Mailbox::find($site['email_id']);
+
+        $goodsCate = [];
+        foreach ($goods as $itme){
+            $goodsCate[] = $itme->category;
+        }
+
+        $data = [
+            'license' => $license,
+            'goods'   => $goods,
+            'goodsCategory'   => $goodsCate,
+            'article'   => $article,
+            'mailbox'=> $mailbox,
+        ];
+
+        return $data;
+    }
 }

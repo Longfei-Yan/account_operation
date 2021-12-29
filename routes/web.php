@@ -12,3 +12,4 @@
 */
 
 Route::get('/', 'TemplateController@index');
+Route::get('/api', 'TemplateController@get');
