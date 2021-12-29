@@ -56,7 +56,7 @@ class TemplateController extends Controller
             'goods'   => $goods,
             'goodsCategory'   => $goodsCate,
             'article'   => $article,
-            'email'=> $mailbox,
+            'mailbox'=> $mailbox,
         ];
 
         return view($template['template'], $data);
