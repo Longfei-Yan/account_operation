@@ -8,14 +8,17 @@ use App\Admin\Renderable\LicenseTable;
 use App\Admin\Renderable\TemplateTable;
 use App\Admin\Repositories\Site;
 use App\Models\Article;
+use App\Models\ArticleCategory;
 use App\Models\Goods;
 use App\Models\License;
+use App\Models\Mailbox;
 use App\Models\Template;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Log;
 
 class SiteController extends AdminController
 {
@@ -32,13 +35,13 @@ class SiteController extends AdminController
             $grid->column('license_id')->display(function($licenseId) {
                 return License::find($licenseId)->name;
             });
-            $grid->column('goods_id')->count();
-            $grid->column('article_id')->count();
+            $grid->column('goods_id');
+            $grid->column('article_id');
             $grid->column('template_id')->display(function($templateId) {
                 return Template::find($templateId)->template;
             });
+            $grid->column('email_id');
             $grid->column('note');
-            $grid->column('created_at');
             $grid->column('updated_at')->sortable();
             $grid->column('state')
                 ->using([1 => '未处理', 2 => '已处理', 3 => '成功', 4 => '失败'])
@@ -82,9 +85,10 @@ class SiteController extends AdminController
             $show->field('id');
             $show->field('domain');
             $show->field('license_id');
-            $show->field('goods_id')->count();
-            $show->field('article_id')->count();
+            $show->field('goods_id');
+            $show->field('article_id');
             $show->field('template_id');
+            $show->field('email_id');
             $show->field('note');
             $show->field('state');
             $show->field('created_at');
@@ -109,26 +113,54 @@ class SiteController extends AdminController
                 ->from(LicenseTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
                 ->model(License::class, 'id', 'name'); // 设置编辑数据显示
 
-            $form->multipleSelectTable('goods_id')
-                ->required()
-                ->title(admin_trans_label('goods'))
-                ->dialogWidth('50%') // 弹窗宽度，默认 800px
-                ->from(GoodsTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
-                ->model(Goods::class, 'id', 'title'); // 设置编辑数据显示
+            $form->hidden('goods_id');
+            $form->hidden('article_id');
+            $form->hidden('email_id');
+            $form->saving(function (Form $form) {
+                //商品
+                $license = License::find($form->license_id);
+                $goods = Goods::whereIn('category_id', $license['category_id'])->get();
+                $goodsId = [];
+                foreach ($goods as $item){
+                    $goodsId[] = $item['id'];
+                }
+                $form->goods_id = implode(',', $goodsId);
 
-            $form->multipleSelectTable('article_id')
-                ->required()
-                ->title(admin_trans_label('article'))
-                ->dialogWidth('50%') // 弹窗宽度，默认 800px
-                ->from(ArticleTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
-                ->model(Article::class, 'id', 'title'); // 设置编辑数据显示
+                //文章
+                $artCate = ArticleCategory::select('id')->get();
+                $articleId = [];
+                foreach ($artCate as $itme){
+                    $article = Article::select('id')->where('category_id', '=', $itme['id'])->inRandomOrder()->take(1)->get();
+                    $articleId[] = $article[0]['id'];
+                }
+                $form->article_id = implode(',', $articleId);
 
-            $form->selectTable('template_id')
-                ->required()
-                ->title(admin_trans_label('template'))
-                ->dialogWidth('50%') // 弹窗宽度，默认 800px
-                ->from(TemplateTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
-                ->model(Template::class, 'id', 'note'); // 设置编辑数据显示
+                //邮箱
+                $emailId = Mailbox::select('id')->inRandomOrder()->take(1)->get();
+                $form->email_id = $emailId[0]['id'];
+                Log::info($emailId[0]['id']);
+            });
+
+//            $form->multipleSelectTable('goods_id')
+//                ->required()
+//                ->title(admin_trans_label('goods'))
+//                ->dialogWidth('50%') // 弹窗宽度，默认 800px
+//                ->from(GoodsTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
+//                ->model(Goods::class, 'id', 'title'); // 设置编辑数据显示
+//
+//            $form->multipleSelectTable('article_id')
+//                ->required()
+//                ->title(admin_trans_label('article'))
+//                ->dialogWidth('50%') // 弹窗宽度，默认 800px
+//                ->from(ArticleTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
+//                ->model(Article::class, 'id', 'title'); // 设置编辑数据显示
+//
+//            $form->selectTable('template_id')
+//                ->required()
+//                ->title(admin_trans_label('template'))
+//                ->dialogWidth('50%') // 弹窗宽度，默认 800px
+//                ->from(TemplateTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
+//                ->model(Template::class, 'id', 'note'); // 设置编辑数据显示
 
             $form->text('note');
 

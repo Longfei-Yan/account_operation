@@ -136,8 +136,8 @@
         <div class="container">
             <p class="border-bottom"><small>Email: {{ $email['content'] }} | Address：{{ $license['address'] }}</small></p>
             <p><small>Copyright © 2021 {{ $license['title'] }}</small>
-                @if (!empty($policy))
-                    @foreach ($policy as $item)
+                @if (!empty($article))
+                    @foreach ($article as $item)
                 <a href="javascript:;" onclick="{{ 'box'.$item['id'].'()' }}" class="ml-3" id="about">{{ $item['title'] }}</a>
                     @endforeach
                 @else

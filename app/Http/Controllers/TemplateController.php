@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\ArticleCategory;
+use App\Models\Mailbox;
 use Illuminate\Http\Request;
 use App\Models\License;
 use App\Models\Goods;
@@ -39,10 +40,9 @@ class TemplateController extends Controller
         $goods = Goods::select()->whereIn('id', $site['goods_id'])->get();
         $article = Article::select()->whereIn('id', $site['article_id'])->get();
 
-        $policy = Article::select()->whereIn('category_id', [1,2,3,4,5])->whereIn('id', $site['article_id'])->get();
+        //$policy = Article::select()->whereIn('category_id', [1,2,3,4,5])->whereIn('id', $site['article_id'])->get();
 
-        //$about = Article::select()->where('category_id', '=', 6)->whereIn('id', $site['article_id'])->first();
-        $email = Article::select()->where('category_id', '=', 7)->whereIn('id', $site['article_id'])->first();
+        $email = Mailbox::find($site['email_id']);
 
         $goodsCate = [];
         foreach ($goods as $itme){
@@ -54,7 +54,6 @@ class TemplateController extends Controller
             'goods'   => $goods,
             'goodsCategory'   => $goodsCate,
             'article'   => $article,
-            'policy'=> $policy,
             'email'=> $email,
         ];
 

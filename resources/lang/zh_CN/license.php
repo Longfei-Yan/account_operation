@@ -12,6 +12,7 @@ return [
         'photo' => '快照',
         'logo' => 'LOGO',
         'banner' => '横幅',
+        'about' => '关于',
     ],
     'options' => [
     ],

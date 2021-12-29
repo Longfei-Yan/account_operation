@@ -12,23 +12,23 @@ class Site extends Model
         return $this->belongsTo(License::class);
     }
 
-    public function getGoodsIdAttribute($value)
-    {
-        return explode(',', $value);
-    }
+//    public function getGoodsIdAttribute($value)
+//    {
+//        return explode(',', $value);
+//    }
 
-    public function getArticleIdAttribute($value)
-    {
-        return explode(',', $value);
-    }
+//    public function getArticleIdAttribute($value)
+//    {
+//        return explode(',', $value);
+//    }
 
-    public function setGoodsIdAttribute($value)
-    {
-        $this->attributes['goods_id'] = implode(',', $value);
-    }
+//    public function setGoodsIdAttribute($value)
+//    {
+//        $this->attributes['goods_id'] = implode(',', $value);
+//    }
 
-    public function setArticleIdAttribute($value)
-    {
-        $this->attributes['article_id'] = implode(',', $value);
-    }
+//    public function setArticleIdAttribute($value)
+//    {
+//        $this->attributes['article_id'] = implode(',', $value);
+//    }
 }

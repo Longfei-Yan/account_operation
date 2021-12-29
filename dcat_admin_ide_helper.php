@@ -11,6 +11,7 @@ namespace Dcat\Admin {
     use Illuminate\Support\Collection;
 
     /**
+     * @property Grid\Column|Collection site
      * @property Grid\Column|Collection id
      * @property Grid\Column|Collection name
      * @property Grid\Column|Collection type
@@ -47,9 +48,11 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection price
      * @property Grid\Column|Collection thumbnail
      * @property Grid\Column|Collection address
+     * @property Grid\Column|Collection about
      * @property Grid\Column|Collection count
      * @property Grid\Column|Collection photo
      * @property Grid\Column|Collection logo
+     * @property Grid\Column|Collection banner
      * @property Grid\Column|Collection email
      * @property Grid\Column|Collection token
      * @property Grid\Column|Collection domain
@@ -57,10 +60,12 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection goods_id
      * @property Grid\Column|Collection article_id
      * @property Grid\Column|Collection template_id
-     * @property Grid\Column|Collection remark
+     * @property Grid\Column|Collection note
+     * @property Grid\Column|Collection state
      * @property Grid\Column|Collection template
      * @property Grid\Column|Collection email_verified_at
      *
+     * @method Grid\Column|Collection site(string $label = null)
      * @method Grid\Column|Collection id(string $label = null)
      * @method Grid\Column|Collection name(string $label = null)
      * @method Grid\Column|Collection type(string $label = null)
@@ -97,9 +102,11 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection price(string $label = null)
      * @method Grid\Column|Collection thumbnail(string $label = null)
      * @method Grid\Column|Collection address(string $label = null)
+     * @method Grid\Column|Collection about(string $label = null)
      * @method Grid\Column|Collection count(string $label = null)
      * @method Grid\Column|Collection photo(string $label = null)
      * @method Grid\Column|Collection logo(string $label = null)
+     * @method Grid\Column|Collection banner(string $label = null)
      * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
      * @method Grid\Column|Collection domain(string $label = null)
@@ -107,7 +114,8 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection goods_id(string $label = null)
      * @method Grid\Column|Collection article_id(string $label = null)
      * @method Grid\Column|Collection template_id(string $label = null)
-     * @method Grid\Column|Collection remark(string $label = null)
+     * @method Grid\Column|Collection note(string $label = null)
+     * @method Grid\Column|Collection state(string $label = null)
      * @method Grid\Column|Collection template(string $label = null)
      * @method Grid\Column|Collection email_verified_at(string $label = null)
      */
@@ -116,6 +124,7 @@ namespace Dcat\Admin {
     class MiniGrid extends Grid {}
 
     /**
+     * @property Show\Field|Collection site
      * @property Show\Field|Collection id
      * @property Show\Field|Collection name
      * @property Show\Field|Collection type
@@ -152,9 +161,11 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection price
      * @property Show\Field|Collection thumbnail
      * @property Show\Field|Collection address
+     * @property Show\Field|Collection about
      * @property Show\Field|Collection count
      * @property Show\Field|Collection photo
      * @property Show\Field|Collection logo
+     * @property Show\Field|Collection banner
      * @property Show\Field|Collection email
      * @property Show\Field|Collection token
      * @property Show\Field|Collection domain
@@ -162,10 +173,12 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection goods_id
      * @property Show\Field|Collection article_id
      * @property Show\Field|Collection template_id
-     * @property Show\Field|Collection remark
+     * @property Show\Field|Collection note
+     * @property Show\Field|Collection state
      * @property Show\Field|Collection template
      * @property Show\Field|Collection email_verified_at
      *
+     * @method Show\Field|Collection site(string $label = null)
      * @method Show\Field|Collection id(string $label = null)
      * @method Show\Field|Collection name(string $label = null)
      * @method Show\Field|Collection type(string $label = null)
@@ -202,9 +215,11 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection price(string $label = null)
      * @method Show\Field|Collection thumbnail(string $label = null)
      * @method Show\Field|Collection address(string $label = null)
+     * @method Show\Field|Collection about(string $label = null)
      * @method Show\Field|Collection count(string $label = null)
      * @method Show\Field|Collection photo(string $label = null)
      * @method Show\Field|Collection logo(string $label = null)
+     * @method Show\Field|Collection banner(string $label = null)
      * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
      * @method Show\Field|Collection domain(string $label = null)
@@ -212,7 +227,8 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection goods_id(string $label = null)
      * @method Show\Field|Collection article_id(string $label = null)
      * @method Show\Field|Collection template_id(string $label = null)
-     * @method Show\Field|Collection remark(string $label = null)
+     * @method Show\Field|Collection note(string $label = null)
+     * @method Show\Field|Collection state(string $label = null)
      * @method Show\Field|Collection template(string $label = null)
      * @method Show\Field|Collection email_verified_at(string $label = null)
      */

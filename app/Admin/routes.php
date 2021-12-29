@@ -22,4 +22,5 @@ Route::group([
     $router->resource('goods', GoodsController::class);
     $router->resource('template', TemplateController::class);
     $router->resource('site', SiteController::class);
+    $router->resource('mailbox', MailboxController::class);
 });
