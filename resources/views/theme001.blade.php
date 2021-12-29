@@ -134,7 +134,7 @@
 
     <footer class="py-3 bg-light">
         <div class="container">
-            <p class="border-bottom"><small>Email: {{ $email['content'] }} | Address：{{ $license['address'] }}</small></p>
+            <p class="border-bottom"><small>Email: {{ $mailbox['email'] }} | Address：{{ $license['address'] }}</small></p>
             <p><small>Copyright © 2021 {{ $license['title'] }}</small>
                 @if (!empty($article))
                     @foreach ($article as $item)

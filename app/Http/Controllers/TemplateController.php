@@ -44,7 +44,7 @@ class TemplateController extends Controller
 
         //$policy = Article::select()->whereIn('category_id', [1,2,3,4,5])->whereIn('id', $site['article_id'])->get();
 
-        $email = Mailbox::find($site['email_id']);
+        $mailbox = Mailbox::find($site['email_id']);
 
         $goodsCate = [];
         foreach ($goods as $itme){
@@ -56,7 +56,7 @@ class TemplateController extends Controller
             'goods'   => $goods,
             'goodsCategory'   => $goodsCate,
             'article'   => $article,
-            'email'=> $email,
+            'email'=> $mailbox,
         ];
 
         return view($template['template'], $data);
