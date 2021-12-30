@@ -11,13 +11,13 @@ use App\Models\Goods;
 use App\Models\Site;
 use App\Models\Template;
 
-class TemplateController extends Controller
+class IndexController extends Controller
 {
     protected $currentDomain;
 
     public function __construct()
     {
-        $this->currentDomain = $_SERVER['HTTP_HOST'];
+        $this->currentDomain = 'yaoyingice.online';
     }
 
     public function index(){
@@ -42,8 +42,6 @@ class TemplateController extends Controller
         $goods = Goods::select()->whereIn('id', $goodsId)->get();
         $article = Article::select()->whereIn('id', $articleId)->get();
 
-        //$policy = Article::select()->whereIn('category_id', [1,2,3,4,5])->whereIn('id', $site['article_id'])->get();
-
         $mailbox = Mailbox::find($site['email_id']);
 
         $goodsCate = [];
@@ -54,7 +52,7 @@ class TemplateController extends Controller
         $data = [
             'license' => $license,
             'goods'   => $goods,
-            'goodsCategory'   => $goodsCate,
+            'goodsCategory'   => array_unique($goodsCate),
             'article'   => $article,
             'mailbox'=> $mailbox,
         ];
@@ -64,10 +62,20 @@ class TemplateController extends Controller
 
     public function get(){
 
+        $restFul = [
+            'code' => 0,
+            'msg'  => '',
+            'data' => '',
+        ];
+
         //检测是否许可的域名
         $site = Site::select()->where('domain', '=', $this->currentDomain)->first();
         if (empty($site)){
-            return $data = ['404'];
+            return [
+                'code' => 0,
+                'msg'  => 'Illegal Domain',
+                'data' => '',
+            ];
         }
 
         //获取执照，商品，文章
@@ -78,8 +86,6 @@ class TemplateController extends Controller
         $goods = Goods::select()->whereIn('id', $goodsId)->get();
         $article = Article::select()->whereIn('id', $articleId)->get();
 
-        //$policy = Article::select()->whereIn('category_id', [1,2,3,4,5])->whereIn('id', $site['article_id'])->get();
-
         $mailbox = Mailbox::find($site['email_id']);
 
         $goodsCate = [];
@@ -90,11 +96,15 @@ class TemplateController extends Controller
         $data = [
             'license' => $license,
             'goods'   => $goods,
-            'goodsCategory'   => $goodsCate,
+            'goodsCategory'   => array_unique($goodsCate),
             'article'   => $article,
             'mailbox'=> $mailbox,
         ];
 
-        return $data;
+        return [
+            'code' => 1,
+            'msg'  => 'Request Success',
+            'data' => $data,
+        ];
     }
 }

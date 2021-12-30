@@ -11,5 +11,5 @@
 |
 */
 
-Route::get('/', 'TemplateController@index');
-Route::get('/api', 'TemplateController@get');
+Route::get('/', 'IndexController@index');
+Route::get('/api/index', 'IndexController@get');

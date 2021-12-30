@@ -68,7 +68,7 @@
             <h2 class="text-center">OUR PRODUCTS</h2>
             @if (!empty($goodsCategory))
             <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
-                @foreach (array_unique($goodsCategory) as $item)
+                @foreach ($goodsCategory as $item)
                 <li class="nav-item" role="presentation">
                     <a class="nav-link {{ $goodsCategory[0]['id'] == $item['id']?'active':'' }}" id="pills-{{ $item['id'] }}-tab" data-toggle="pill" href="#pills-{{ $item['id'] }}" role="tab" aria-controls="pills-{{ $item['id'] }}" aria-selected="{{ $goodsCategory[0]['id'] == $item['id']?'true':'' }}">{{ $item['title'] }}</a>
                 </li>
@@ -78,7 +78,7 @@
 
             @if (!empty($goodsCategory))
             <div class="tab-content" id="pills-tabContent">
-                @foreach (array_unique($goodsCategory) as $category)
+                @foreach ($goodsCategory as $category)
                 <div class="tab-pane fade {{ $goodsCategory[0]['id'] == $category['id']?'show active':'' }}" id="pills-{{ $category['id'] }}" role="tabpanel" aria-labelledby="pills-{{ $category['id'] }}-tab">
 
                     <div class="row row-cols-1 row-cols-md-2" id="div1">
