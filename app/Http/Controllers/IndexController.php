@@ -17,7 +17,7 @@ class IndexController extends Controller
 
     public function __construct()
     {
-        $this->currentDomain = 'yaoyingice.online';
+        $this->currentDomain = $_SERVER['HTTP_HOST'];
     }
 
     public function index(){
@@ -61,21 +61,14 @@ class IndexController extends Controller
     }
 
     public function get(){
-
-        $restFul = [
-            'code' => 0,
-            'msg'  => '',
-            'data' => '',
-        ];
-
         //检测是否许可的域名
         $site = Site::select()->where('domain', '=', $this->currentDomain)->first();
         if (empty($site)){
-            return [
+            return json_encode([
                 'code' => 0,
                 'msg'  => 'Illegal Domain',
                 'data' => '',
-            ];
+            ], JSON_FORCE_OBJECT);
         }
 
         //获取执照，商品，文章
@@ -101,10 +94,10 @@ class IndexController extends Controller
             'mailbox'=> $mailbox,
         ];
 
-        return [
+        return json_encode([
             'code' => 1,
             'msg'  => 'Request Success',
             'data' => $data,
-        ];
+        ], JSON_FORCE_OBJECT);
     }
 }
