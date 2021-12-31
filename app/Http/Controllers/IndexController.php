@@ -17,7 +17,7 @@ class IndexController extends Controller
 
     public function __construct()
     {
-        $this->currentDomain = $_SERVER['HTTP_HOST'];
+        $this->currentDomain = $_SERVER['HTTP_ORIGIN'];
     }
 
     public function index(){
@@ -62,8 +62,10 @@ class IndexController extends Controller
 
     public function get(){
         header("Access-Control-Allow-Origin: *");
+
         //检测是否许可的域名
-        $site = Site::select()->where('domain', '=', $this->currentDomain)->first();
+        $domain = str_replace('http://','',$this->currentDomain);
+        $site = Site::select()->where('domain', '=', $domain)->first();
         if (empty($site)){
             return json_encode([
                 'code' => 0,
