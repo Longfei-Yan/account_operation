@@ -61,6 +61,7 @@ class IndexController extends Controller
     }
 
     public function get(){
+        header("Access-Control-Allow-Origin: *");
         //检测是否许可的域名
         $site = Site::select()->where('domain', '=', $this->currentDomain)->first();
         if (empty($site)){
