@@ -13,17 +13,9 @@ use App\Models\Template;
 
 class IndexController extends Controller
 {
-    protected $currentDomain;
-
-    public function __construct()
-    {
-        $this->currentDomain = $_SERVER['HTTP_ORIGIN'];
-    }
-
     public function index(){
-
         //检测是否许可的域名
-        $site = Site::select()->where('domain', '=', $this->currentDomain)->first();
+        $site = Site::select()->where('domain', '=', $_SERVER['HTTP_HOST'])->first();
         if (empty($site)){
             return view('404');
         }
@@ -64,7 +56,7 @@ class IndexController extends Controller
         header("Access-Control-Allow-Origin: *");
 
         //检测是否许可的域名
-        $domain = str_replace('http://','',$this->currentDomain);
+        $domain = str_replace('http://','',$_SERVER['HTTP_ORIGIN']);
         $site = Site::select()->where('domain', '=', $domain)->first();
         if (empty($site)){
             return json_encode([
