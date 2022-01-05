@@ -87,6 +87,7 @@ class IndexController extends Controller
             'goodsCategory'   => array_unique($goodsCate),
             'article'   => $article,
             'mailbox'=> $mailbox,
+            'basisUrl'=>env('APP_URL').'/uploads/',
         ];
 
         return json_encode([

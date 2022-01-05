@@ -72,6 +72,23 @@ return [
             'url' => env('APP_URL').'/uploads',
         ],
 
+        'cosv5' => [
+            /* 驱动名称 */
+            'driver' => 'cosv5',
+            /* 地域 */
+            'region' =>  env('COSV5_REGION', 'ap-shanghai'),
+            /* 认证信息 */
+            'credentials' => [
+                'appId'      => env('COSV5_APP_ID'),
+                'secretId' =>  env('COSV5_SECRET_ID'),
+                'secretKey' => env('COSV5_SECRET_KEY'),
+            ],
+            'cdn'=>'https://operation-1305557136.cos.ap-hongkong.myqcloud.com',
+            'scheme'             => env('COSV5_SCHEME', 'http'),
+            /* 默认存储桶 */
+            'bucket'             => env('COSV5_BUCKET'),
+        ],
+
     ],
 
 ];
