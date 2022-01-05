@@ -77,11 +77,11 @@ class GoodsController extends AdminController
                 return \App\Models\GoodsCategory::selectOptions();
             })->saving(function ($v) {
                 return (int) $v;
-            });
-            $form->text('title');
-            $form->textarea('description');
+            })->required();
+            $form->text('title')->required();
+            $form->textarea('description')->required();
             $form->textarea('content');
-            $form->text('price');
+            $form->text('price')->required();
             $form->image('thumbnail')->move('images/goods')->uniqueName()->autoUpload();
 
             $form->display('created_at');

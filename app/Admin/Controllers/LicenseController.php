@@ -78,16 +78,16 @@ class LicenseController extends AdminController
     {
         return Form::make(new License(), function (Form $form) {
             $form->display('id');
+            $form->text('name')->required();
+            $form->text('title')->required();
+            $form->text('address')->required();
+            $form->textarea('about')->required();
             $form->multipleSelectTable('category_id')
                 ->title(admin_trans_label('category'))
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(GoodsCategoryTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
-                ->model(GoodsCategory::class, 'id', 'title'); // 设置编辑数据显示
-
-            $form->text('name');
-            $form->text('title');
-            $form->text('address');
-            $form->textarea('about');
+                ->model(GoodsCategory::class, 'id', 'title')
+                ->required(); // 设置编辑数据显示
             $form->image('photo')->move('images/license')->autoUpload();
             $form->image('logo')->move('images/logo')->uniqueName()->autoUpload();
             $form->image('banner')->move('images/banner')->uniqueName()->autoUpload();

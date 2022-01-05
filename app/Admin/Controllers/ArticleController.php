@@ -70,9 +70,9 @@ class ArticleController extends AdminController
                 return \App\Models\ArticleCategory::selectOptions();
             })->saving(function ($v) {
                 return (int) $v;
-            });
-            $form->text('title');
-            $form->textarea('content');
+            })->required();
+            $form->text('title')->required();
+            $form->textarea('content')->required();
 
             $form->display('created_at');
             $form->display('updated_at');

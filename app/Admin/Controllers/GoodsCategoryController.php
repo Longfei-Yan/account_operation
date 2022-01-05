@@ -38,8 +38,8 @@ class GoodsCategoryController extends AdminController
                 return \App\Models\GoodsCategory::selectOptions();
             })->saving(function ($v) {
                 return (int) $v;
-            });
-            $form->text('title');
+            })->required();
+            $form->text('title')->required();
             //$form->text('icon');
             $form->switch('show')->default(1);
 

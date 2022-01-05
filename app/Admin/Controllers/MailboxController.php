@@ -29,7 +29,7 @@ class MailboxController extends AdminController
             });
 
             $grid->quickCreate(function (Grid\Tools\QuickCreate $create) {
-                $create->email('email', '邮箱');
+                $create->email('email', '邮箱')->required();
             });
 
             $grid->disableEditButton();
@@ -67,7 +67,7 @@ class MailboxController extends AdminController
     {
         return Form::make(new Mailbox(), function (Form $form) {
             $form->display('id');
-            $form->email('email');
+            $form->email('email')->required();
 
             $form->display('created_at');
             $form->display('updated_at');

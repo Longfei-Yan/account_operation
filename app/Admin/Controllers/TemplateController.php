@@ -65,7 +65,7 @@ class TemplateController extends AdminController
     {
         return Form::make(new Template(), function (Form $form) {
             $form->display('id');
-            $form->text('template');
+            $form->text('template')->required();
             $form->text('note');
             $form->display('created_at');
             $form->display('updated_at');

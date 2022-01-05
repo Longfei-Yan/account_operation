@@ -39,7 +39,7 @@ class ArticleCategoryController extends AdminController
             })->saving(function ($v) {
                 return (int) $v;
             });
-            $form->text('title');
+            $form->text('title')->required();
             //$form->text('icon');
             $form->switch('show')->default(1);
 

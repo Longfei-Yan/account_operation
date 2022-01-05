@@ -171,7 +171,7 @@ class SiteController extends AdminController
             $form->text('note');
 
             $directors = [1 => '未处理', 2 => '已处理', 3 => '成功', 4 => '失败'];
-            $form->select('state')->options($directors);
+            $form->select('state')->options($directors)->default(1);
 
             $form->display('created_at');
             $form->display('updated_at');
