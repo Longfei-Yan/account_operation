@@ -68,10 +68,10 @@ class IndexController extends Controller
 
         //获取执照，商品，文章
         //1获取指定商品包括分类的完整collection
-        $license = License::find($site['license_id']);
+        $license = License::select('id', 'title', 'address', 'about', 'logo', 'banner')->find($site['license_id']);
         $goodsId = explode(',', $site['goods_id']);
         $articleId = explode(',', $site['article_id']);
-        $goods = Goods::select()->whereIn('id', $goodsId)->get();
+        $goods = Goods::select('id', 'title', 'description', 'content', 'price', 'thumbnail', 'category_id')->whereIn('id', $goodsId)->get();
         $article = Article::select()->whereIn('id', $articleId)->get();
 
         $mailbox = Mailbox::find($site['email_id']);
@@ -81,13 +81,19 @@ class IndexController extends Controller
             $goodsCate[] = $itme->category;
         }
 
+        $license['logo'] = config('filesystems.disks.admin.url').'/'.$license->logo;
+        $license['banner'] = config('filesystems.disks.admin.url').'/'.$license->banner;
+
+        foreach ($goods as $itme){
+            $itme['thumbnail'] = config('filesystems.disks.admin.url').'/'.$itme->thumbnail;
+        }
+
         $data = [
             'license' => $license,
             'goods'   => $goods,
             'goodsCategory'   => array_unique($goodsCate),
             'article'   => $article,
             'mailbox'=> $mailbox,
-            'basisUrl'=>env('APP_URL').'/uploads/',
         ];
 
         return json_encode([

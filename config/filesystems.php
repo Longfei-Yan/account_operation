@@ -72,6 +72,12 @@ return [
             'url' => env('APP_URL').'/uploads',
         ],
 
+        'template' => [
+            'driver' => 'local',
+            'root' => resource_path('views'),
+            'visibility' => 'private',
+        ],
+
         'cosv5' => [
             /* 驱动名称 */
             'driver' => 'cosv5',
