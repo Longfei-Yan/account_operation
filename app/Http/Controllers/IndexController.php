@@ -10,6 +10,7 @@ use App\Models\License;
 use App\Models\Goods;
 use App\Models\Site;
 use App\Models\Template;
+use Illuminate\Support\Facades\Log;
 
 class IndexController extends Controller
 {
@@ -49,7 +50,7 @@ class IndexController extends Controller
             'mailbox'=> $mailbox,
         ];
 
-        return view($template['template'], $data);
+        return view(str_replace('.blade.php', '', $template['template']), $data);
     }
 
     public function get(){
