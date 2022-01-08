@@ -75,7 +75,7 @@ return [
         'template' => [
             'driver' => 'local',
             'root' => resource_path('views'),
-            'visibility' => 'private',
+            'visibility' => 'public',
         ],
 
         'cosv5' => [
