@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use App\Models\ArticleCategory;
 use App\Models\Mailbox;
-use Illuminate\Http\Request;
 use App\Models\License;
 use App\Models\Goods;
 use App\Models\Site;
 use App\Models\Template;
-use Illuminate\Support\Facades\Log;
 
 class IndexController extends Controller
 {
@@ -34,7 +31,6 @@ class IndexController extends Controller
         $articleId = explode(',', $site['article_id']);
         $goods = Goods::select()->whereIn('id', $goodsId)->get();
         $article = Article::select()->whereIn('id', $articleId)->get();
-
         $mailbox = Mailbox::find($site['email_id']);
 
         $goodsCate = [];
@@ -74,7 +70,6 @@ class IndexController extends Controller
         $articleId = explode(',', $site['article_id']);
         $goods = Goods::select('id', 'title', 'description', 'content', 'price', 'thumbnail', 'category_id')->whereIn('id', $goodsId)->get();
         $article = Article::select()->whereIn('id', $articleId)->get();
-
         $mailbox = Mailbox::find($site['email_id']);
 
         $goodsCate = [];
