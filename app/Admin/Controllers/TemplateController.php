@@ -65,7 +65,7 @@ class TemplateController extends AdminController
     {
         return Form::make(new Template(), function (Form $form) {
             $form->display('id');
-            $form->file('template')->disk('template')->move('template')->autoUpload()->required();
+            $form->file('template')->disk('template')->move('templates')->autoUpload()->required();
             $form->text('note');
             $form->display('created_at');
             $form->display('updated_at');
