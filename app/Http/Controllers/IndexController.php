@@ -38,6 +38,13 @@ class IndexController extends Controller
             $goodsCate[] = $itme->category;
         }
 
+        $license['logo'] = config('filesystems.disks.admin.url').'/'.$license->logo;
+        $license['banner'] = config('filesystems.disks.admin.url').'/'.$license->banner;
+
+        foreach ($goods as $itme){
+            $itme['thumbnail'] = config('filesystems.disks.admin.url').'/'.$itme->thumbnail;
+        }
+
         $data = [
             'license' => $license,
             'goods'   => $goods,
