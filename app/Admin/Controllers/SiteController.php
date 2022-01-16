@@ -20,7 +20,6 @@ use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Http\Controllers\AdminController;
-use Illuminate\Support\Facades\Log;
 
 class SiteController extends AdminController
 {
@@ -95,6 +94,7 @@ class SiteController extends AdminController
             $show->field('article_id');
             $show->field('template_id');
             $show->field('email_id');
+            $show->field('banner_id');
             $show->field('note');
             $show->field('state');
             $show->field('created_at');
@@ -139,6 +139,9 @@ class SiteController extends AdminController
 
                 //banner
                 $banner = Banner::select('id')->whereIn('category_id', $license['category_id'])->inRandomOrder()->take(1)->get();
+                if (count($banner)<1){
+                    return $form->response()->error('没有与执照分类对应横幅,请先在该分类下添加横幅');
+                }
                 $form->banner_id = $banner[0]['id'];
 
                 //颜色
