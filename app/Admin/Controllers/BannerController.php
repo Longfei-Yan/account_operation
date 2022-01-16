@@ -22,9 +22,6 @@ class BannerController extends AdminController
         return Grid::make(new Banner(), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('banner');
-            $grid->column('category_id')->display(function($categoryId) {
-                return GoodsCategory::find($categoryId)->title;
-            });
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
 
@@ -46,7 +43,6 @@ class BannerController extends AdminController
     {
         return Show::make($id, new Banner(), function (Show $show) {
             $show->field('id');
-            $show->field('category_id');
             $show->field('banner');
             $show->field('created_at');
             $show->field('updated_at');
@@ -62,12 +58,6 @@ class BannerController extends AdminController
     {
         return Form::make(new Banner(), function (Form $form) {
             $form->display('id');
-            $form->selectTable('category_id')
-                ->title(admin_trans_label('category'))
-                ->dialogWidth('50%') // 弹窗宽度，默认 800px
-                ->from(GoodsCategoryTable::make(['id' => $form->getKey()])) // 设置渲染类实例，并传递自定义参数
-                ->model(GoodsCategory::class, 'id', 'title')
-                ->required(); // 设置编辑数据显示
             $form->image('banner')->move('images/banner')->uniqueName()->autoUpload();
 
             $form->display('created_at');

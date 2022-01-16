@@ -138,10 +138,7 @@ class SiteController extends AdminController
                 $form->goods_id = implode(',', $goodsId);
 
                 //banner
-                $banner = Banner::select('id')->whereIn('category_id', $license['category_id'])->inRandomOrder()->take(1)->get();
-                if (count($banner)<1){
-                    return $form->response()->error('没有与执照分类对应横幅,请先在该分类下添加横幅');
-                }
+                $banner = Banner::select('id')->inRandomOrder()->take(1)->get();
                 $form->banner_id = $banner[0]['id'];
 
                 //颜色
