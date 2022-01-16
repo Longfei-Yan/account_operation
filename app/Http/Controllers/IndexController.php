@@ -55,6 +55,7 @@ class IndexController extends Controller
             'article'   => $article,
             'mailbox'=> $mailbox,
             'banner'=>$banner,
+            'site'=>$site,
         ];
 
         return view(str_replace('.blade.php', '', $template['template']), $data);
@@ -103,6 +104,7 @@ class IndexController extends Controller
             'article'   => $article,
             'mailbox'=> $mailbox,
             'banner'=>$banner,
+            'site'=>$site,
         ];
 
         return json_encode([
