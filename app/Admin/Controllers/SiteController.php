@@ -7,8 +7,10 @@ use App\Admin\Renderable\GoodsTable;
 use App\Admin\Renderable\LicenseTable;
 use App\Admin\Renderable\TemplateTable;
 use App\Admin\Repositories\Site;
+use App\Exceptions\Tools\BatchCpoyDomain;
 use App\Models\Article;
 use App\Models\ArticleCategory;
+use App\Models\Banner;
 use App\Models\Goods;
 use App\Models\License;
 use App\Models\Mailbox;
@@ -62,6 +64,10 @@ class SiteController extends AdminController
                 $filter->equal('id');
                 $filter->equal('domain');
             });
+
+            $grid->batchActions([
+                new BatchCpoyDomain('批量复制域名'),
+            ]);
 
             $grid->disableEditButton();
             $grid->showQuickEditButton();
@@ -117,6 +123,8 @@ class SiteController extends AdminController
             $form->hidden('article_id');
             $form->hidden('email_id');
             $form->hidden('template_id');
+            $form->hidden('banner_id');
+            $form->hidden('color');
             $form->saving(function (Form $form) {
                 //商品
                 $license = License::find($form->license_id);
@@ -128,6 +136,29 @@ class SiteController extends AdminController
                     }
                 }
                 $form->goods_id = implode(',', $goodsId);
+
+                //banner
+                $banner = Banner::select('id')->whereIn('category_id', $license['category_id'])->inRandomOrder()->take(1)->get();
+                $form->banner_id = $banner[0]['id'];
+
+                //颜色
+                function randomColor() {
+                    $str = '#';
+                    for($i = 0 ; $i < 8 ; $i++) {
+                        $randNum = rand(0 , 15);
+                        switch ($randNum) {
+                            case 10: $randNum = 'A'; break;
+                            case 11: $randNum = 'B'; break;
+                            case 12: $randNum = 'C'; break;
+                            case 13: $randNum = 'D'; break;
+                            case 14: $randNum = 'E'; break;
+                            case 15: $randNum = 'F'; break;
+                        }
+                        $str .= $randNum;
+                    }
+                    return $str;
+                }
+                $form->color = randomColor();
 
                 //文章
                 $artCate = ArticleCategory::select('id')->get();

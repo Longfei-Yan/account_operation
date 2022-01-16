@@ -23,5 +23,6 @@ return [
         'template_management'        => '模板管理',
         'site_management'            => '网站管理',
         'mailbox_management'         => '邮箱管理',
+        'banner'                     => '横幅库',
     ],
 ];

@@ -40,6 +40,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection depth
      * @property Grid\Column|Collection category_id
      * @property Grid\Column|Collection content
+     * @property Grid\Column|Collection banner
      * @property Grid\Column|Collection connection
      * @property Grid\Column|Collection queue
      * @property Grid\Column|Collection payload
@@ -52,7 +53,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection count
      * @property Grid\Column|Collection photo
      * @property Grid\Column|Collection logo
-     * @property Grid\Column|Collection banner
      * @property Grid\Column|Collection email
      * @property Grid\Column|Collection token
      * @property Grid\Column|Collection domain
@@ -60,6 +60,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection goods_id
      * @property Grid\Column|Collection article_id
      * @property Grid\Column|Collection template_id
+     * @property Grid\Column|Collection email_id
      * @property Grid\Column|Collection note
      * @property Grid\Column|Collection state
      * @property Grid\Column|Collection template
@@ -94,6 +95,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection depth(string $label = null)
      * @method Grid\Column|Collection category_id(string $label = null)
      * @method Grid\Column|Collection content(string $label = null)
+     * @method Grid\Column|Collection banner(string $label = null)
      * @method Grid\Column|Collection connection(string $label = null)
      * @method Grid\Column|Collection queue(string $label = null)
      * @method Grid\Column|Collection payload(string $label = null)
@@ -106,7 +108,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection count(string $label = null)
      * @method Grid\Column|Collection photo(string $label = null)
      * @method Grid\Column|Collection logo(string $label = null)
-     * @method Grid\Column|Collection banner(string $label = null)
      * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
      * @method Grid\Column|Collection domain(string $label = null)
@@ -114,6 +115,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection goods_id(string $label = null)
      * @method Grid\Column|Collection article_id(string $label = null)
      * @method Grid\Column|Collection template_id(string $label = null)
+     * @method Grid\Column|Collection email_id(string $label = null)
      * @method Grid\Column|Collection note(string $label = null)
      * @method Grid\Column|Collection state(string $label = null)
      * @method Grid\Column|Collection template(string $label = null)
@@ -153,6 +155,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection depth
      * @property Show\Field|Collection category_id
      * @property Show\Field|Collection content
+     * @property Show\Field|Collection banner
      * @property Show\Field|Collection connection
      * @property Show\Field|Collection queue
      * @property Show\Field|Collection payload
@@ -165,7 +168,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection count
      * @property Show\Field|Collection photo
      * @property Show\Field|Collection logo
-     * @property Show\Field|Collection banner
      * @property Show\Field|Collection email
      * @property Show\Field|Collection token
      * @property Show\Field|Collection domain
@@ -173,6 +175,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection goods_id
      * @property Show\Field|Collection article_id
      * @property Show\Field|Collection template_id
+     * @property Show\Field|Collection email_id
      * @property Show\Field|Collection note
      * @property Show\Field|Collection state
      * @property Show\Field|Collection template
@@ -207,6 +210,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection depth(string $label = null)
      * @method Show\Field|Collection category_id(string $label = null)
      * @method Show\Field|Collection content(string $label = null)
+     * @method Show\Field|Collection banner(string $label = null)
      * @method Show\Field|Collection connection(string $label = null)
      * @method Show\Field|Collection queue(string $label = null)
      * @method Show\Field|Collection payload(string $label = null)
@@ -219,7 +223,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection count(string $label = null)
      * @method Show\Field|Collection photo(string $label = null)
      * @method Show\Field|Collection logo(string $label = null)
-     * @method Show\Field|Collection banner(string $label = null)
      * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
      * @method Show\Field|Collection domain(string $label = null)
@@ -227,6 +230,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection goods_id(string $label = null)
      * @method Show\Field|Collection article_id(string $label = null)
      * @method Show\Field|Collection template_id(string $label = null)
+     * @method Show\Field|Collection email_id(string $label = null)
      * @method Show\Field|Collection note(string $label = null)
      * @method Show\Field|Collection state(string $label = null)
      * @method Show\Field|Collection template(string $label = null)
