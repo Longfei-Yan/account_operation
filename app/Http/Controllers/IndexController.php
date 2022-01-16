@@ -9,12 +9,13 @@ use App\Models\License;
 use App\Models\Goods;
 use App\Models\Site;
 use App\Models\Template;
+use Illuminate\Support\Facades\Log;
 
 class IndexController extends Controller
 {
     public function index(){
         //检测是否许可的域名
-        $site = Site::select()->where('domain', '=', $_SERVER['HTTP_HOST'])->first();
+        $site = Site::select()->where('domain', '=', 'yaoyingice.online')->first();
         if (empty($site)){
             return view('404');
         }
@@ -40,8 +41,8 @@ class IndexController extends Controller
             $goodsCate[] = $itme->category;
         }
 
+        $banner['banner'] = config('filesystems.disks.admin.url').'/'.$banner->banner;
         $license['logo'] = config('filesystems.disks.admin.url').'/'.$license->logo;
-        $license['banner'] = config('filesystems.disks.admin.url').'/'.$license->banner;
 
         foreach ($goods as $itme){
             $itme['thumbnail'] = config('filesystems.disks.admin.url').'/'.$itme->thumbnail;
@@ -88,8 +89,8 @@ class IndexController extends Controller
             $goodsCate[] = $itme->category;
         }
 
+        $banner['banner'] = config('filesystems.disks.admin.url').'/'.$banner->banner;
         $license['logo'] = config('filesystems.disks.admin.url').'/'.$license->logo;
-        $license['banner'] = config('filesystems.disks.admin.url').'/'.$license->banner;
 
         foreach ($goods as $itme){
             $itme['thumbnail'] = config('filesystems.disks.admin.url').'/'.$itme->thumbnail;
