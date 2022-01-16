@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Banner;
 use App\Models\Mailbox;
 use App\Models\License;
 use App\Models\Goods;
@@ -32,6 +33,7 @@ class IndexController extends Controller
         $goods = Goods::select()->whereIn('id', $goodsId)->get();
         $article = Article::select()->whereIn('id', $articleId)->get();
         $mailbox = Mailbox::find($site['email_id']);
+        $banner = Banner::find($site['banner_id']);
 
         $goodsCate = [];
         foreach ($goods as $itme){
@@ -51,6 +53,7 @@ class IndexController extends Controller
             'goodsCategory'   => array_unique($goodsCate),
             'article'   => $article,
             'mailbox'=> $mailbox,
+            'banner'=>$banner,
         ];
 
         return view(str_replace('.blade.php', '', $template['template']), $data);
@@ -78,6 +81,7 @@ class IndexController extends Controller
         $goods = Goods::select('id', 'title', 'description', 'content', 'price', 'thumbnail', 'category_id')->whereIn('id', $goodsId)->get();
         $article = Article::select()->whereIn('id', $articleId)->get();
         $mailbox = Mailbox::find($site['email_id']);
+        $banner = Banner::find($site['banner_id']);
 
         $goodsCate = [];
         foreach ($goods as $itme){
@@ -97,6 +101,7 @@ class IndexController extends Controller
             'goodsCategory'   => array_unique($goodsCate),
             'article'   => $article,
             'mailbox'=> $mailbox,
+            'banner'=>$banner,
         ];
 
         return json_encode([
