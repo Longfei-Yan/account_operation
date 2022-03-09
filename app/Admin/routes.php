@@ -24,4 +24,6 @@ Route::group([
     $router->resource('site', SiteController::class);
     $router->resource('mailbox', MailboxController::class);
     $router->resource('banner', BannerController::class);
+    $router->resource('country', CountryController::class);
+    $router->resource('landingLinks', LandingLinkController::class);
 });

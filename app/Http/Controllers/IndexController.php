@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Banner;
+use App\Models\Country;
+use App\Models\LandingLink;
 use App\Models\Mailbox;
 use App\Models\License;
 use App\Models\Goods;
@@ -18,6 +20,16 @@ class IndexController extends Controller
         $site = Site::select()->where('domain', '=', $_SERVER['HTTP_HOST'])->first();
         if (empty($site)){
             return view('404');
+        }
+
+        $headers = getallheaders();
+        $country = isset($headers['Cf-Ipcountry']) ? $headers['Cf-Ipcountry'] : '';
+        if ($country){
+            $country = Country::select('id')->where('country_code', '=', $country)->first();
+            $link = LandingLink::select('url')->where('country_id', '=', $country->id)->where('flag', '=', 1)->orderBy('top', 'desc')->first();
+            if ($link){
+                header("location:$link->url");
+            }
         }
 
         //匹配模板
