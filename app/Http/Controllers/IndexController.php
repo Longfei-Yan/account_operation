@@ -26,9 +26,12 @@ class IndexController extends Controller
         $country = isset($headers['Cf-Ipcountry']) ? $headers['Cf-Ipcountry'] : '';
         if ($country){
             $country = Country::select('id')->where('country_code', '=', $country)->first();
-            $link = LandingLink::select('url')->where('country_id', '=', $country->id)->where('flag', '=', 1)->orderBy('top', 'desc')->first();
-            if ($link){
-                header("location:$link->url");
+
+            if ($country) {
+                $link = LandingLink::select('url')->where('country_id', '=', $country->id)->where('flag', '=', 1)->orderBy('top', 'desc')->first();
+                if ($link) {
+                    header("location:$link->url");
+                }
             }
         }
 
