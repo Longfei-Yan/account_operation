@@ -25,20 +25,20 @@ class IndexController extends Controller
         $headers = getallheaders();
         $country = isset($headers['Cf-Ipcountry']) ? $headers['Cf-Ipcountry'] : '';
         if ($country){
-            $country = Country::select('id')->where('country_code', '=', $country)->first();
+            $country = Country::select('id', 'country_code')->where('country_code', 'like', "%$country%")->first();
 
             if ($country) {
                 $link = LandingLink::select('url')->where('country_id', '=', $country->id)->where('flag', '=', 1)->orderBy('top', 'desc')->first();
                 if ($link) {
                     $data = [
-                        'account'   =>  'ab1198',       //用户名
-                        'pwd'       =>  'ab1198@0302',  //密码
-                        'zone'      =>  'MYS.MY,MS',          //投放的国家地区，ALL为全可以访问，留空为全部不允许
-                        'mobile'    =>  '0',            //1为只允许手机 2为只允许pc 0为不限制
-                        //'systemlang'=>  '',  //系统语言
-                        //'ip_white'  =>  '',
-                        //'ip_black'  =>  '',
-                        //'source'    =>  '',         //来源
+                        'account'   =>  'ab1198',                   //用户名
+                        'pwd'       =>  'ab1198@0302',              //密码
+                        'zone'      =>  $country->country_code,     //投放的国家地区，ALL为全可以访问，留空为全部不允许
+                        'mobile'    =>  '0',                        //1为只允许手机 2为只允许pc 0为不限制
+                        'systemlang'=>  '',                         //系统语言
+                        'ip_white'  =>  '',
+                        'ip_black'  =>  '',
+                        'source'    =>  '',                         //来源
                     ];
                     if(abjump($data)){
                         header("location:$link->url");

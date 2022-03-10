@@ -37,6 +37,9 @@ function abjump($data){
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($jsonData));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $return = curl_exec($ch);
+
+    if (!$return) return false;
+
     $return = json_decode($return, true);
     $boolean = $return['result'];
 
