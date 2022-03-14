@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Banner;
+use App\Models\Cloak;
 use App\Models\Country;
 use App\Models\LandingLink;
 use App\Models\Mailbox;
@@ -28,8 +29,12 @@ class IndexController extends Controller
             $country = Country::select('id', 'country_code')->where('country_code', 'like', "%$country%")->first();
 
             if ($country) {
-                $link = LandingLink::select('url')->where('country_id', '=', $country->id)->where('flag', '=', 1)->orderBy('top', 'desc')->first();
-                if ($link) {
+                $cloak = Cloak::select()
+                    ->where('site_id', '=', $site->id)
+                    ->where('country_id', '=', $country->id)
+                    ->where('flag', '=', 1)
+                    ->orderBy('top', 'desc')->first();
+                if ($cloak) {
                     $data = [
                         'account'   =>  'ab1198',                   //用户名
                         'pwd'       =>  'ab1198@0302',              //密码
@@ -41,7 +46,7 @@ class IndexController extends Controller
                         'source'    =>  '',                         //来源
                     ];
                     if(abjump($data)){
-                        header("location:$link->url");
+                        header("location:$cloak->landing_link");
                     }
                 }
             }

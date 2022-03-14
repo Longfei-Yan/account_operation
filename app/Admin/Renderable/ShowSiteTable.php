@@ -5,7 +5,7 @@ use App\Models\Site;
 use Dcat\Admin\Support\LazyRenderable;
 use Dcat\Admin\Widgets\Table;
 
-class SiteTable extends LazyRenderable
+class ShowSiteTable extends LazyRenderable
 {
     public function render()
     {

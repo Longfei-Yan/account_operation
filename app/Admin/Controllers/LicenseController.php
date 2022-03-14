@@ -3,7 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Renderable\GoodsCategoryTable;
-use App\Admin\Renderable\SiteTable;
+use App\Admin\Renderable\ShowSiteTable;
 use App\Admin\Repositories\License;
 use App\Models\GoodsCategory;
 use Dcat\Admin\Form;
@@ -28,7 +28,7 @@ class LicenseController extends AdminController
             $grid->site(admin_trans_label('count'))->display(function ($site) {
                 $count = count($site);
                 return "{$count}";
-            })->modal('Site', SiteTable::make());
+            })->modal('Site', ShowSiteTable::make());
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
 

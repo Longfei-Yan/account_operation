@@ -41,6 +41,9 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection category_id
      * @property Grid\Column|Collection content
      * @property Grid\Column|Collection banner
+     * @property Grid\Column|Collection site_id
+     * @property Grid\Column|Collection country_id
+     * @property Grid\Column|Collection landing_link
      * @property Grid\Column|Collection country_name
      * @property Grid\Column|Collection country_code
      * @property Grid\Column|Collection connection
@@ -50,8 +53,9 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection failed_at
      * @property Grid\Column|Collection price
      * @property Grid\Column|Collection thumbnail
-     * @property Grid\Column|Collection country_id
      * @property Grid\Column|Collection url
+     * @property Grid\Column|Collection top
+     * @property Grid\Column|Collection flag
      * @property Grid\Column|Collection address
      * @property Grid\Column|Collection about
      * @property Grid\Column|Collection count
@@ -102,6 +106,9 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection category_id(string $label = null)
      * @method Grid\Column|Collection content(string $label = null)
      * @method Grid\Column|Collection banner(string $label = null)
+     * @method Grid\Column|Collection site_id(string $label = null)
+     * @method Grid\Column|Collection country_id(string $label = null)
+     * @method Grid\Column|Collection landing_link(string $label = null)
      * @method Grid\Column|Collection country_name(string $label = null)
      * @method Grid\Column|Collection country_code(string $label = null)
      * @method Grid\Column|Collection connection(string $label = null)
@@ -111,8 +118,9 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection failed_at(string $label = null)
      * @method Grid\Column|Collection price(string $label = null)
      * @method Grid\Column|Collection thumbnail(string $label = null)
-     * @method Grid\Column|Collection country_id(string $label = null)
      * @method Grid\Column|Collection url(string $label = null)
+     * @method Grid\Column|Collection top(string $label = null)
+     * @method Grid\Column|Collection flag(string $label = null)
      * @method Grid\Column|Collection address(string $label = null)
      * @method Grid\Column|Collection about(string $label = null)
      * @method Grid\Column|Collection count(string $label = null)
@@ -168,6 +176,9 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection category_id
      * @property Show\Field|Collection content
      * @property Show\Field|Collection banner
+     * @property Show\Field|Collection site_id
+     * @property Show\Field|Collection country_id
+     * @property Show\Field|Collection landing_link
      * @property Show\Field|Collection country_name
      * @property Show\Field|Collection country_code
      * @property Show\Field|Collection connection
@@ -177,8 +188,9 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection failed_at
      * @property Show\Field|Collection price
      * @property Show\Field|Collection thumbnail
-     * @property Show\Field|Collection country_id
      * @property Show\Field|Collection url
+     * @property Show\Field|Collection top
+     * @property Show\Field|Collection flag
      * @property Show\Field|Collection address
      * @property Show\Field|Collection about
      * @property Show\Field|Collection count
@@ -229,6 +241,9 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection category_id(string $label = null)
      * @method Show\Field|Collection content(string $label = null)
      * @method Show\Field|Collection banner(string $label = null)
+     * @method Show\Field|Collection site_id(string $label = null)
+     * @method Show\Field|Collection country_id(string $label = null)
+     * @method Show\Field|Collection landing_link(string $label = null)
      * @method Show\Field|Collection country_name(string $label = null)
      * @method Show\Field|Collection country_code(string $label = null)
      * @method Show\Field|Collection connection(string $label = null)
@@ -238,8 +253,9 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection failed_at(string $label = null)
      * @method Show\Field|Collection price(string $label = null)
      * @method Show\Field|Collection thumbnail(string $label = null)
-     * @method Show\Field|Collection country_id(string $label = null)
      * @method Show\Field|Collection url(string $label = null)
+     * @method Show\Field|Collection top(string $label = null)
+     * @method Show\Field|Collection flag(string $label = null)
      * @method Show\Field|Collection address(string $label = null)
      * @method Show\Field|Collection about(string $label = null)
      * @method Show\Field|Collection count(string $label = null)
