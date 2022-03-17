@@ -11,6 +11,7 @@ use App\Models\Mailbox;
 use App\Models\License;
 use App\Models\Goods;
 use App\Models\Site;
+use App\Models\SiteAccessLog;
 use App\Models\Template;
 use Illuminate\Support\Facades\Log;
 
@@ -25,6 +26,16 @@ class IndexController extends Controller
 
         $headers = getallheaders();
         $country = isset($headers['Cf-Ipcountry']) ? $headers['Cf-Ipcountry'] : '';
+
+        $logs = new SiteAccessLog;
+        $logs->url = isset($_SERVER['HTTP_HOST'])??'';
+        $logs->ip = getIp();
+        $logs->country = $country;
+        $logs->device = clientOS();
+        $logs->language = getSystemLang();
+        $logs->source = isset($_SERVER['HTTP_REFERER'])??'';
+        $logs->save();
+
         if ($country){
             $country = Country::select('id', 'country_code')->where('country_code', 'like', "%$country%")->first();
 

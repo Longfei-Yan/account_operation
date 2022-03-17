@@ -44,6 +44,8 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection site_id
      * @property Grid\Column|Collection country_id
      * @property Grid\Column|Collection landing_link
+     * @property Grid\Column|Collection top
+     * @property Grid\Column|Collection flag
      * @property Grid\Column|Collection country_name
      * @property Grid\Column|Collection country_code
      * @property Grid\Column|Collection connection
@@ -54,8 +56,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection price
      * @property Grid\Column|Collection thumbnail
      * @property Grid\Column|Collection url
-     * @property Grid\Column|Collection top
-     * @property Grid\Column|Collection flag
      * @property Grid\Column|Collection address
      * @property Grid\Column|Collection about
      * @property Grid\Column|Collection count
@@ -63,6 +63,11 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection logo
      * @property Grid\Column|Collection email
      * @property Grid\Column|Collection token
+     * @property Grid\Column|Collection ip
+     * @property Grid\Column|Collection ip_country
+     * @property Grid\Column|Collection device
+     * @property Grid\Column|Collection language
+     * @property Grid\Column|Collection source
      * @property Grid\Column|Collection domain
      * @property Grid\Column|Collection license_id
      * @property Grid\Column|Collection goods_id
@@ -109,6 +114,8 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection site_id(string $label = null)
      * @method Grid\Column|Collection country_id(string $label = null)
      * @method Grid\Column|Collection landing_link(string $label = null)
+     * @method Grid\Column|Collection top(string $label = null)
+     * @method Grid\Column|Collection flag(string $label = null)
      * @method Grid\Column|Collection country_name(string $label = null)
      * @method Grid\Column|Collection country_code(string $label = null)
      * @method Grid\Column|Collection connection(string $label = null)
@@ -119,8 +126,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection price(string $label = null)
      * @method Grid\Column|Collection thumbnail(string $label = null)
      * @method Grid\Column|Collection url(string $label = null)
-     * @method Grid\Column|Collection top(string $label = null)
-     * @method Grid\Column|Collection flag(string $label = null)
      * @method Grid\Column|Collection address(string $label = null)
      * @method Grid\Column|Collection about(string $label = null)
      * @method Grid\Column|Collection count(string $label = null)
@@ -128,6 +133,11 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection logo(string $label = null)
      * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
+     * @method Grid\Column|Collection ip(string $label = null)
+     * @method Grid\Column|Collection ip_country(string $label = null)
+     * @method Grid\Column|Collection device(string $label = null)
+     * @method Grid\Column|Collection language(string $label = null)
+     * @method Grid\Column|Collection source(string $label = null)
      * @method Grid\Column|Collection domain(string $label = null)
      * @method Grid\Column|Collection license_id(string $label = null)
      * @method Grid\Column|Collection goods_id(string $label = null)
@@ -179,6 +189,8 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection site_id
      * @property Show\Field|Collection country_id
      * @property Show\Field|Collection landing_link
+     * @property Show\Field|Collection top
+     * @property Show\Field|Collection flag
      * @property Show\Field|Collection country_name
      * @property Show\Field|Collection country_code
      * @property Show\Field|Collection connection
@@ -189,8 +201,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection price
      * @property Show\Field|Collection thumbnail
      * @property Show\Field|Collection url
-     * @property Show\Field|Collection top
-     * @property Show\Field|Collection flag
      * @property Show\Field|Collection address
      * @property Show\Field|Collection about
      * @property Show\Field|Collection count
@@ -198,6 +208,11 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection logo
      * @property Show\Field|Collection email
      * @property Show\Field|Collection token
+     * @property Show\Field|Collection ip
+     * @property Show\Field|Collection ip_country
+     * @property Show\Field|Collection device
+     * @property Show\Field|Collection language
+     * @property Show\Field|Collection source
      * @property Show\Field|Collection domain
      * @property Show\Field|Collection license_id
      * @property Show\Field|Collection goods_id
@@ -244,6 +259,8 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection site_id(string $label = null)
      * @method Show\Field|Collection country_id(string $label = null)
      * @method Show\Field|Collection landing_link(string $label = null)
+     * @method Show\Field|Collection top(string $label = null)
+     * @method Show\Field|Collection flag(string $label = null)
      * @method Show\Field|Collection country_name(string $label = null)
      * @method Show\Field|Collection country_code(string $label = null)
      * @method Show\Field|Collection connection(string $label = null)
@@ -254,8 +271,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection price(string $label = null)
      * @method Show\Field|Collection thumbnail(string $label = null)
      * @method Show\Field|Collection url(string $label = null)
-     * @method Show\Field|Collection top(string $label = null)
-     * @method Show\Field|Collection flag(string $label = null)
      * @method Show\Field|Collection address(string $label = null)
      * @method Show\Field|Collection about(string $label = null)
      * @method Show\Field|Collection count(string $label = null)
@@ -263,6 +278,11 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection logo(string $label = null)
      * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
+     * @method Show\Field|Collection ip(string $label = null)
+     * @method Show\Field|Collection ip_country(string $label = null)
+     * @method Show\Field|Collection device(string $label = null)
+     * @method Show\Field|Collection language(string $label = null)
+     * @method Show\Field|Collection source(string $label = null)
      * @method Show\Field|Collection domain(string $label = null)
      * @method Show\Field|Collection license_id(string $label = null)
      * @method Show\Field|Collection goods_id(string $label = null)

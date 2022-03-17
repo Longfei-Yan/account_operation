@@ -57,3 +57,61 @@ function getSystemLang(){
 
     return $real_browser_lang;
 }
+
+
+/**
+ * 用户设备类型
+ * @return string
+ */
+function clientOS() {
+
+    $agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+
+    if(strpos($agent, 'windows nt')) {
+        $platform = 'windows';
+    } elseif(strpos($agent, 'macintosh')) {
+        $platform = 'mac';
+    } elseif(strpos($agent, 'ipod')) {
+        $platform = 'ipod';
+    } elseif(strpos($agent, 'ipad')) {
+        $platform = 'ipad';
+    } elseif(strpos($agent, 'iphone')) {
+        $platform = 'iphone';
+    } elseif (strpos($agent, 'android')) {
+        $platform = 'android';
+    } elseif(strpos($agent, 'unix')) {
+        $platform = 'unix';
+    } elseif(strpos($agent, 'linux')) {
+        $platform = 'linux';
+    } else {
+        $platform = 'other';
+    }
+
+    return $platform;
+}
+
+
+function getIp()
+{
+    if ($_SERVER["HTTP_CLIENT_IP"] && strcasecmp($_SERVER["HTTP_CLIENT_IP"], "unknown")) {
+        $ip = $_SERVER["HTTP_CLIENT_IP"];
+    } else {
+        if ($_SERVER["HTTP_X_FORWARDED_FOR"] && strcasecmp($_SERVER["HTTP_X_FORWARDED_FOR"], "unknown")) {
+            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        } else {
+            if ($_SERVER["REMOTE_ADDR"] && strcasecmp($_SERVER["REMOTE_ADDR"], "unknown")) {
+                $ip = $_SERVER["REMOTE_ADDR"];
+            } else {
+                if (isset ($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'],
+                        "unknown")
+                ) {
+                    $ip = $_SERVER['REMOTE_ADDR'];
+                } else {
+                    $ip = "unknown";
+                }
+            }
+        }
+    }
+    return ($ip);
+}
+

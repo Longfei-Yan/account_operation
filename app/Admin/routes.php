@@ -27,4 +27,5 @@ Route::group([
     $router->resource('country', CountryController::class);
     $router->resource('landingLinks', LandingLinkController::class);
     $router->resource('cloak', CloakController::class);
+    $router->resource('siteAccessLogs', SiteAccessLogController::class);
 });
