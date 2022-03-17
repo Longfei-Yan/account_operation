@@ -29,7 +29,7 @@ class IndexController extends Controller
 
         $logs = new SiteAccessLog;
         $logs->url = isset($_SERVER['HTTP_HOST'])??'';
-        $logs->ip = getIp();
+        $logs->ip = getRealIp();
         $logs->country = $country;
         $logs->device = clientOS();
         $logs->language = getSystemLang();

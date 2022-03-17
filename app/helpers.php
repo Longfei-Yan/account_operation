@@ -91,27 +91,22 @@ function clientOS() {
 }
 
 
-function getIp()
+function getRealIp()
 {
-    if ($_SERVER["HTTP_CLIENT_IP"] && strcasecmp($_SERVER["HTTP_CLIENT_IP"], "unknown")) {
+    $ip=false;
+    if(!empty($_SERVER["HTTP_CLIENT_IP"])){
         $ip = $_SERVER["HTTP_CLIENT_IP"];
-    } else {
-        if ($_SERVER["HTTP_X_FORWARDED_FOR"] && strcasecmp($_SERVER["HTTP_X_FORWARDED_FOR"], "unknown")) {
-            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
-        } else {
-            if ($_SERVER["REMOTE_ADDR"] && strcasecmp($_SERVER["REMOTE_ADDR"], "unknown")) {
-                $ip = $_SERVER["REMOTE_ADDR"];
-            } else {
-                if (isset ($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'],
-                        "unknown")
-                ) {
-                    $ip = $_SERVER['REMOTE_ADDR'];
-                } else {
-                    $ip = "unknown";
-                }
+    }
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ips = explode (", ", $_SERVER['HTTP_X_FORWARDED_FOR']);
+        if ($ip) { array_unshift($ips, $ip); $ip = FALSE; }
+        for ($i = 0; $i < count($ips); $i++) {
+            if (!eregi ("^(10│172.16│192.168).", $ips[$i])) {
+                $ip = $ips[$i];
+                break;
             }
         }
     }
-    return ($ip);
+    return ($ip ? $ip : $_SERVER['REMOTE_ADDR']);
 }
 
