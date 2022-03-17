@@ -28,12 +28,12 @@ class IndexController extends Controller
         $country = isset($headers['Cf-Ipcountry']) ? $headers['Cf-Ipcountry'] : '';
 
         $logs = new SiteAccessLog;
-        $logs->url = isset($_SERVER['HTTP_HOST'])??'';
-        $logs->ip = isset($_SERVER["REMOTE_ADDR"]);
+        $logs->url = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
+        $logs->ip = isset($_SERVER["REMOTE_ADDR"]) ? $_SERVER["REMOTE_ADDR"] : '';
         $logs->country = $country;
         $logs->device = clientOS();
         $logs->language = getSystemLang();
-        $logs->source = isset($_SERVER['HTTP_REFERER'])??'';
+        $logs->source = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
         $logs->save();
 
         if ($country){
