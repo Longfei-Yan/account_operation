@@ -90,3 +90,43 @@ function clientOS() {
     return $platform;
 }
 
+/**
+ * 获取用户IP地址
+ * @return array|false|mixed|string
+ */
+function getIPaddress(){
+    $IPaddress='';
+    if (isset($_SERVER))
+    {
+        if (isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
+        {
+            #优先使用  HTTP_X_FORWARDED_FOR，从示例A看出 此值有可能是一个逗号分割的多个IP ,那么这样直接获取是否欠考虑？
+            $IPaddress = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        }
+        else if (isset($_SERVER["HTTP_CLIENT_IP"]))
+        {
+            $IPaddress = $_SERVER["HTTP_CLIENT_IP"];
+        }
+        else
+        {
+            $IPaddress = $_SERVER["REMOTE_ADDR"];
+        }
+    }
+    else
+    {
+        if (getenv("HTTP_X_FORWARDED_FOR"))
+        {
+            # getenv() 获取系统的环境变量
+            $IPaddress = getenv("HTTP_X_FORWARDED_FOR");
+        } else if (getenv("HTTP_CLIENT_IP"))
+        {
+            $IPaddress = getenv("HTTP_CLIENT_IP");
+        }
+        else
+        {
+            $IPaddress = getenv("REMOTE_ADDR");
+        }
+    }
+    return $IPaddress;
+}
+
