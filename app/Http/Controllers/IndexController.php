@@ -31,7 +31,7 @@ class IndexController extends Controller
             if ($country) {
                 $cloak = Cloak::select()
                     ->where('site_id', '=', $site->id)
-                    ->where('country_id', '=', $country->id)
+                    ->whereRaw("JSON_CONTAINS(country_id, CONCAT('\"$country->id\"'))")
                     ->where('flag', '=', 1)
                     ->orderBy('top', 'desc')->first();
                 if ($cloak) {

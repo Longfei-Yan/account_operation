@@ -11,6 +11,7 @@ use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Log;
 
 class CloakController extends AdminController
 {
@@ -27,7 +28,12 @@ class CloakController extends AdminController
                 return Site::find($siteId)->domain;
             })->copyable();
             $grid->column('country_id')->display(function($countryId){
-                return Country::find($countryId)->country_name;
+                $country = Country::whereIn('id', json_decode($countryId))->get();
+                $country_names = [];
+                foreach ($country as $item){
+                    $country_names[] = $item->country_name;
+                }
+                return implode(',', $country_names);
             });
             $grid->column('landing_link')->copyable();
             $grid->column('top');
@@ -77,7 +83,7 @@ class CloakController extends AdminController
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(SelectSiteTable::make()) // 设置渲染类实例，并传递自定义参数
                 ->model(Site::class, 'id', 'domain'); // 设置编辑数据显示
-            $form->selectTable('country_id')
+            $form->multipleSelectTable('country_id')
                 ->title('国家')
                 ->dialogWidth('50%') // 弹窗宽度，默认 800px
                 ->from(SelectCountryTable::make()) // 设置渲染类实例，并传递自定义参数
