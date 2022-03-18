@@ -74,6 +74,17 @@ class SiteController extends AdminController
             $grid->enableDialogCreate();
             // 设置弹窗宽高，默认值为 '700px', '670px'
             $grid->setDialogFormDimensions('60%', '100%');
+
+            $grid->export()->rows(function ($rows) {
+                foreach ($rows as $index => &$row) {
+                    $row['license_id'] = License::find($row['license_id'])->name;
+                    $row['email_id'] = Mailbox::find($row['email_id'])->email;
+                    $status = [1 => '未处理', 2 => '已处理', 3 => '成功', 4 => '失败'];
+                    $row['state'] = $status[$row['state']];
+                }
+
+                return $rows;
+            });
         });
     }
 
