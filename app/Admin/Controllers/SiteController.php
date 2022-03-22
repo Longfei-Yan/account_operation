@@ -140,7 +140,7 @@ class SiteController extends AdminController
             $form->saving(function (Form $form) {
                 //商品
                 $license = License::find($form->license_id);
-                $category = GoodsCategory::select('id')->whereIn('parent_id', $license['category_id'])->inRandomOrder()->take(3)->get();
+                $category = GoodsCategory::select('id')->whereIn('parent_id', $license['category_id'])->where('show', '=', 1)->inRandomOrder()->take(3)->get();
                 $goodsId = [];
                 if($category){
                     foreach ($category as $item){
