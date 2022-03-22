@@ -10,9 +10,6 @@ class GoodsCategoryTable extends LazyRenderable
 {
     public function grid(): Grid
     {
-        // 获取外部传递的参数
-        $id = $this->id;
-
         return Grid::make(new GoodsCategory(), function (Grid $grid) {
             $grid->column('id');
             $grid->column('title');
@@ -21,7 +18,7 @@ class GoodsCategoryTable extends LazyRenderable
 
             $grid->paginate(10);
             $grid->disableActions();
-
+            $grid->model()->where('parent_id', '=', 0)->where('show', '=', 1);
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->like('title')->width(4);
             });

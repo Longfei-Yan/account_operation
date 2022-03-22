@@ -12,6 +12,7 @@ use App\Models\Article;
 use App\Models\ArticleCategory;
 use App\Models\Banner;
 use App\Models\Goods;
+use App\Models\GoodsCategory;
 use App\Models\License;
 use App\Models\Mailbox;
 use App\Models\Template;
@@ -139,11 +140,14 @@ class SiteController extends AdminController
             $form->saving(function (Form $form) {
                 //商品
                 $license = License::find($form->license_id);
+                $category = GoodsCategory::select('id')->whereIn('parent_id', $license['category_id'])->inRandomOrder()->take(3)->get();
                 $goodsId = [];
-                foreach ($license['category_id'] as $item){
-                    $goods = Goods::select('id')->where('category_id', '=', $item)->inRandomOrder()->take(3)->get();
-                    foreach ($goods as $item){
-                        $goodsId[] = $item['id'];
+                if($category){
+                    foreach ($category as $item){
+                        $goods = Goods::select('id')->where('category_id', '=', $item->id)->inRandomOrder()->take(3)->get();
+                        foreach ($goods as $item){
+                            $goodsId[] = $item['id'];
+                        }
                     }
                 }
                 $form->goods_id = implode(',', $goodsId);

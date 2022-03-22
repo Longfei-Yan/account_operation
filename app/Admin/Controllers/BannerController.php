@@ -29,6 +29,9 @@ class BannerController extends AdminController
                 $filter->equal('id');
 
             });
+
+            $grid->disableEditButton();
+            $grid->showQuickEditButton();
         });
     }
 

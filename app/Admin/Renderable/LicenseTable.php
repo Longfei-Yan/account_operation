@@ -9,9 +9,6 @@ class LicenseTable extends LazyRenderable
 {
     public function grid(): Grid
     {
-        // 获取外部传递的参数
-        $id = $this->id;
-
         return Grid::make(new License(), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('name');

@@ -10,6 +10,7 @@ use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Log;
 
 class LicenseController extends AdminController
 {
@@ -21,6 +22,18 @@ class LicenseController extends AdminController
     protected function grid()
     {
         return Grid::make(new License(), function (Grid $grid) {
+
+            $grid->selector(function (Grid\Tools\Selector $selector) {
+                $category = GoodsCategory::select('id', 'title')->where('parent_id', '=', 0)->get();
+                $select = [];
+                if ($category){
+                    $select = array_column($category->toArray(), 'title', 'id');
+                }
+                $selector->select('category_id', $select, function ($query, $value) {
+                    $query->whereIn('category_id', [intval(current($value))]);
+                });
+            });
+
             $grid->column('id')->sortable();
             $grid->column('name');
             $grid->column('photo')->image();
@@ -29,6 +42,13 @@ class LicenseController extends AdminController
                 $count = count($site);
                 return "{$count}";
             })->modal('Site', ShowSiteTable::make());
+            $grid->column('category_id')->display(function ($categoryId) {
+                $category = GoodsCategory::whereIn('id', $categoryId)->get();
+                foreach ($category as $itme){
+                    $titles[] = $itme->title;
+                }
+                return implode(',', $titles);
+            });
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
 

@@ -19,6 +19,18 @@ class GoodsController extends AdminController
     protected function grid()
     {
         return Grid::make(new Goods(), function (Grid $grid) {
+
+            $grid->selector(function (Grid\Tools\Selector $selector) {
+                $category = \App\Models\GoodsCategory::select('id', 'title')->get();
+                $select = [];
+                if ($category){
+                    $select = array_column($category->toArray(), 'title', 'id');
+                }
+                $selector->select('category_id', $select, function ($query, $value) {
+                    $query->whereIn('category_id', [intval(current($value))]);
+                });
+            });
+
             $grid->column('id')->sortable();
             $grid->column('title');
             $grid->column('description');
