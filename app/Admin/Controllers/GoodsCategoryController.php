@@ -18,7 +18,7 @@ class GoodsCategoryController extends AdminController
                 $tree = new Tree(new GoodsCategory());
                 $tree->branch(function ($branch) {
 
-                    return $branch['title'];
+                    return $branch['title'].' <span class="badge badge-pill badge-primary badge-up">'.$branch->goods()->count().'</span>';
                 });
 
                 $row->column(12, $tree);
