@@ -42,6 +42,7 @@ class GoodsController extends AdminController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
+                $filter->equal('title');
 
             });
 

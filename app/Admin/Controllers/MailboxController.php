@@ -25,6 +25,7 @@ class MailboxController extends AdminController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
+                $filter->equal('email');
 
             });
 
@@ -38,6 +39,8 @@ class MailboxController extends AdminController
             $grid->enableDialogCreate();
             // 设置弹窗宽高，默认值为 '700px', '670px'
             $grid->setDialogFormDimensions('60%', '100%');
+
+
         });
     }
 
