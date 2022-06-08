@@ -40,10 +40,10 @@ class GoodsController extends AdminController
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
 
+            $grid->quickSearch('title')->placeholder('搜索商品');
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-                $filter->equal('title');
-
+                $filter->like('title');
             });
 
             $grid->disableEditButton();

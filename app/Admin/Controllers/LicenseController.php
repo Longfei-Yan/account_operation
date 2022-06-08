@@ -10,7 +10,6 @@ use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
-use Illuminate\Support\Facades\Log;
 
 class LicenseController extends AdminController
 {
@@ -52,9 +51,10 @@ class LicenseController extends AdminController
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
 
+            $grid->quickSearch('name')->placeholder('搜索名称');
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-                $filter->equal('name');
+                $filter->like('name');
 
             });
 

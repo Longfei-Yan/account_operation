@@ -60,9 +60,10 @@ class SiteController extends AdminController
                     Grid\Column\Filter\In::make([1 => '未处理', 2 => '已处理', 3 => '成功', 4 => '失败'])
                 );
 
+            $grid->quickSearch('domain')->placeholder('搜索域名');
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-                $filter->equal('domain');
+                $filter->like('domain');
             });
 
             $grid->batchActions([

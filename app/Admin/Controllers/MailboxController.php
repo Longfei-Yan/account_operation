@@ -23,9 +23,10 @@ class MailboxController extends AdminController
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
 
+            $grid->quickSearch('email')->placeholder('搜索邮箱');
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-                $filter->equal('email');
+                $filter->like('email');
 
             });
 
