@@ -121,9 +121,12 @@ class SiteController extends AdminController
     {
         return Form::make(new Site(), function (Form $form) {
             $form->display('id');
-            $form->text('domain')->rules('unique:sites', [
-                'unique'=>'该域名已存在，不能重复添加！',
-            ]);
+            $form->text('domain')->rules(function (Form $form) {
+                // 如果不是编辑状态，则添加字段唯一验证
+                if (!$id = $form->model()->id) {
+                    return 'unique:sites';
+                }
+            }, ['unique'=>'该域名已存在，不能重复添加！',]);
             $form->selectTable('license_id')
                 ->required()
                 ->title(admin_trans_label('license'))
