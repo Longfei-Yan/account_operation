@@ -2,10 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Renderable\ArticleTable;
-use App\Admin\Renderable\GoodsTable;
 use App\Admin\Renderable\LicenseTable;
-use App\Admin\Renderable\TemplateTable;
 use App\Admin\Repositories\Site;
 use App\Exceptions\Tools\BatchCpoyDomain;
 use App\Models\Article;
@@ -124,7 +121,9 @@ class SiteController extends AdminController
     {
         return Form::make(new Site(), function (Form $form) {
             $form->display('id');
-            $form->text('domain')->required();
+            $form->text('domain')->rules('unique:sites', [
+                'unique'=>'该域名已存在，不能重复添加！',
+            ]);
             $form->selectTable('license_id')
                 ->required()
                 ->title(admin_trans_label('license'))
